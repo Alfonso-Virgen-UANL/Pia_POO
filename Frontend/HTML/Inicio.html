@@ -5,126 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CitasBarberia</title>
     <!-- Apariencia provicional -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        main {
-            padding: 2rem;
-        }
-        .servicios {
-            margin-top: 2rem;
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .servicios h3 {
-            margin-top: 0;
-        }
-        .servicios ul {
-            list-style-type: none;
-            padding: 0;
-        }
-    </style>
+
 </head>
 <body>
     <header>
-        <h1>Reservar Cita en Barberías</h1>
+        <div class="menu container">
+            <a href="#" class="logo">Logo</a>
+            <input type="checkbox" id="menu">
+            <label for="menu">
+                <img src="" class="menu-icono" alt="">
+            </label>
+            <nav class="navbar"> <!-- Menu de Navegacion -->
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Servicios</a></li>
+                    <li><a href="#">Agendar Cita</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header-content container"> <!-- Contenido del Header -->
+            <h1>Barberia Hefesto</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> 
+                Voluptatibus expedita non dolores nam dolorum sapiente tempora et <br>
+                incidunt amet? Unde accusantium labore possimus maxime 
+                culpa rerum officiis soluta molestias esse.</p>
+        </div>
     </header>
-    <main>
-        <!-- Información de barberías -->
-        <section class="barberias">
-            <div class="barberia">
-                <h3>Barbería Elegante</h3>
-                <p><strong>Dirección:</strong> Calle Principal #123</p>
-                <p><strong>Horario:</strong> 9:00 AM - 8:00 PM</p>
-            </div>
-            <div class="barberia">
-                <h3>Barbería Moderna</h3>
-                <p><strong>Dirección:</strong> Avenida Secundaria #456</p>
-                <p><strong>Horario:</strong> 10:00 AM - 7:00 PM</p>
-            </div>
-            <div class="barberia">
-                <h3>Barbería Clásica</h3>
-                <p><strong>Dirección:</strong> Plaza Central #789</p>
-                <p><strong>Horario:</strong> 8:00 AM - 6:00 PM</p>
-            </div>
-            <div class="barberia">
-                <h3>Barbería Vintage</h3>
-                <p><strong>Dirección:</strong> Calle Vieja #101</p>
-                <p><strong>Horario:</strong> 11:00 AM - 9:00 PM</p>
-            </div>
-        </section>
+    <main class="inicio">
+        <div class="inicio-content container">
+            <h1>¿Quienes Somos?</h1>
+            <img src="imagenes/bareriahefestoinicio.png" alt="">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
+                Voluptatibus expedita non dolores nam dolorum sapiente tempora et <br>
+                incidunt amet? Unde accusantium labore possimus maxime 
+                culpa rerum officiis soluta molestias esse.</p>
 
-        <!-- Formulario de reserva -->
-        <form>
-            <label for="barberia">Selecciona una barbería:</label>
-            <select id="barberia" name="barberia" required onchange="actualizarServicios()">
-                <option value="">--Selecciona una opción--</option>
-                <option value="barberia1">Barbería Elegante</option>
-                <option value="barberia2">Barbería Moderna</option>
-                <option value="barberia3">Barbería Clásica</option>
-                <option value="barberia4">Barbería Vintage</option>
-            </select>
-
-            <label for="servicio">Selecciona un servicio:</label>
-            <select id="servicio" name="servicio" required>
-                <option value="">--Selecciona una barbería primero--</option>
-            </select>
-
-            <label for="fecha">Selecciona una fecha:</label>
-            <input type="date" id="fecha" name="fecha" required>
-
-            <label for="hora">Selecciona una hora:</label>
-            <input type="time" id="hora" name="hora" required>
-
-            <button type="submit">Reservar Cita</button>
-        </form>
     </main>
-
-    <script>
-        // Servicios por barbería
-        const serviciosPorBarberia = {
-            barberia1: ["Corte de cabello", "Afeitado clásico", "Spa facial"],
-            barberia2: ["Corte moderno", "Diseño de barba", "Tintes"],
-            barberia3: ["Corte clásico", "Afeitado con navaja", "Masajes relajantes"],
-            barberia4: ["Corte vintage", "Tratamientos capilares", "Peinados retro"]
-        };
-
-        // Función para actualizar los servicios en el formulario
-        function actualizarServicios() {
-            const barberiaSeleccionada = document.getElementById("barberia").value;
-            const selectServicios = document.getElementById("servicio");
-
-            // Limpia las opciones del select de servicios
-            selectServicios.innerHTML = "";
-
-            if (barberiaSeleccionada && serviciosPorBarberia[barberiaSeleccionada]) {
-                // Agrega las opciones correspondientes a la barbería seleccionada
-                serviciosPorBarberia[barberiaSeleccionada].forEach(servicio => {
-                    const option = document.createElement("option");
-                    option.value = servicio;
-                    option.textContent = servicio;
-                    selectServicios.appendChild(option);
-                });
-            } else {
-                // Si no hay barbería seleccionada, muestra un mensaje por defecto
-                const option = document.createElement("option");
-                option.value = "";
-                option.textContent = "--Selecciona una barbería primero--";
-                selectServicios.appendChild(option);
-            }
-        }
-    </script>
 </body>
 </html>
