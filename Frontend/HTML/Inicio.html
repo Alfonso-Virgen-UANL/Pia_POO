@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CitasBarberia</title>
+    <!-- Apariencia provicional -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -68,12 +69,17 @@
         <!-- Formulario de reserva -->
         <form>
             <label for="barberia">Selecciona una barbería:</label>
-            <select id="barberia" name="barberia" required onchange="mostrarServicios()">
+            <select id="barberia" name="barberia" required onchange="actualizarServicios()">
                 <option value="">--Selecciona una opción--</option>
                 <option value="barberia1">Barbería Elegante</option>
                 <option value="barberia2">Barbería Moderna</option>
                 <option value="barberia3">Barbería Clásica</option>
                 <option value="barberia4">Barbería Vintage</option>
+            </select>
+
+            <label for="servicio">Selecciona un servicio:</label>
+            <select id="servicio" name="servicio" required>
+                <option value="">--Selecciona una barbería primero--</option>
             </select>
 
             <label for="fecha">Selecciona una fecha:</label>
@@ -84,14 +90,6 @@
 
             <button type="submit">Reservar Cita</button>
         </form>
-
-        <!-- Servicios dinámicos -->
-        <section class="servicios" id="servicios">
-            <h3>Servicios Disponibles</h3>
-            <ul id="lista-servicios">
-                <li>Selecciona una barbería para ver los servicios</li>
-            </ul>
-        </section>
     </main>
 
     <script>
@@ -103,26 +101,28 @@
             barberia4: ["Corte vintage", "Tratamientos capilares", "Peinados retro"]
         };
 
-        // Función para mostrar servicios según la barbería seleccionada
-        function mostrarServicios() {
+        // Función para actualizar los servicios en el formulario
+        function actualizarServicios() {
             const barberiaSeleccionada = document.getElementById("barberia").value;
-            const listaServicios = document.getElementById("lista-servicios");
+            const selectServicios = document.getElementById("servicio");
 
-            // Limpia la lista de servicios
-            listaServicios.innerHTML = "";
+            // Limpia las opciones del select de servicios
+            selectServicios.innerHTML = "";
 
             if (barberiaSeleccionada && serviciosPorBarberia[barberiaSeleccionada]) {
-                // Agrega los servicios correspondientes
+                // Agrega las opciones correspondientes a la barbería seleccionada
                 serviciosPorBarberia[barberiaSeleccionada].forEach(servicio => {
-                    const li = document.createElement("li");
-                    li.textContent = servicio;
-                    listaServicios.appendChild(li);
+                    const option = document.createElement("option");
+                    option.value = servicio;
+                    option.textContent = servicio;
+                    selectServicios.appendChild(option);
                 });
             } else {
-                // Mensaje por defecto si no se selecciona una barbería
-                const li = document.createElement("li");
-                li.textContent = "Selecciona una barbería para ver los servicios";
-                listaServicios.appendChild(li);
+                // Si no hay barbería seleccionada, muestra un mensaje por defecto
+                const option = document.createElement("option");
+                option.value = "";
+                option.textContent = "--Selecciona una barbería primero--";
+                selectServicios.appendChild(option);
             }
         }
     </script>
