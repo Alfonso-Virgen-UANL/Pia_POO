@@ -4,8 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CitasBarberia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            padding: 2rem;
+        }
+        .servicios {
+            margin-top: 2rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .servicios h3 {
+            margin-top: 0;
+        }
+        .servicios ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-    
+    <header>
+        <h1>Reservar Cita en Barberías</h1>
+    </header>
+    <main>
+        <!-- Información de barberías -->
+        <section class="barberias">
+            <div class="barberia">
+                <h3>Barbería Elegante</h3>
+                <p><strong>Dirección:</strong> Calle Principal #123</p>
+                <p><strong>Horario:</strong> 9:00 AM - 8:00 PM</p>
+            </div>
+            <div class="barberia">
+                <h3>Barbería Moderna</h3>
+                <p><strong>Dirección:</strong> Avenida Secundaria #456</p>
+                <p><strong>Horario:</strong> 10:00 AM - 7:00 PM</p>
+            </div>
+            <div class="barberia">
+                <h3>Barbería Clásica</h3>
+                <p><strong>Dirección:</strong> Plaza Central #789</p>
+                <p><strong>Horario:</strong> 8:00 AM - 6:00 PM</p>
+            </div>
+            <div class="barberia">
+                <h3>Barbería Vintage</h3>
+                <p><strong>Dirección:</strong> Calle Vieja #101</p>
+                <p><strong>Horario:</strong> 11:00 AM - 9:00 PM</p>
+            </div>
+        </section>
+
+        <!-- Formulario de reserva -->
+        <form>
+            <label for="barberia">Selecciona una barbería:</label>
+            <select id="barberia" name="barberia" required onchange="mostrarServicios()">
+                <option value="">--Selecciona una opción--</option>
+                <option value="barberia1">Barbería Elegante</option>
+                <option value="barberia2">Barbería Moderna</option>
+                <option value="barberia3">Barbería Clásica</option>
+                <option value="barberia4">Barbería Vintage</option>
+            </select>
+
+            <label for="fecha">Selecciona una fecha:</label>
+            <input type="date" id="fecha" name="fecha" required>
+
+            <label for="hora">Selecciona una hora:</label>
+            <input type="time" id="hora" name="hora" required>
+
+            <button type="submit">Reservar Cita</button>
+        </form>
+
+        <!-- Servicios dinámicos -->
+        <section class="servicios" id="servicios">
+            <h3>Servicios Disponibles</h3>
+            <ul id="lista-servicios">
+                <li>Selecciona una barbería para ver los servicios</li>
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        // Servicios por barbería
+        const serviciosPorBarberia = {
+            barberia1: ["Corte de cabello", "Afeitado clásico", "Spa facial"],
+            barberia2: ["Corte moderno", "Diseño de barba", "Tintes"],
+            barberia3: ["Corte clásico", "Afeitado con navaja", "Masajes relajantes"],
+            barberia4: ["Corte vintage", "Tratamientos capilares", "Peinados retro"]
+        };
+
+        // Función para mostrar servicios según la barbería seleccionada
+        function mostrarServicios() {
+            const barberiaSeleccionada = document.getElementById("barberia").value;
+            const listaServicios = document.getElementById("lista-servicios");
+
+            // Limpia la lista de servicios
+            listaServicios.innerHTML = "";
+
+            if (barberiaSeleccionada && serviciosPorBarberia[barberiaSeleccionada]) {
+                // Agrega los servicios correspondientes
+                serviciosPorBarberia[barberiaSeleccionada].forEach(servicio => {
+                    const li = document.createElement("li");
+                    li.textContent = servicio;
+                    listaServicios.appendChild(li);
+                });
+            } else {
+                // Mensaje por defecto si no se selecciona una barbería
+                const li = document.createElement("li");
+                li.textContent = "Selecciona una barbería para ver los servicios";
+                listaServicios.appendChild(li);
+            }
+        }
+    </script>
 </body>
 </html>
