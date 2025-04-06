@@ -34,16 +34,16 @@
             <div id="servicios-container">
                 <select id="servicios" name="servicios[]" required>
                     <option value="" selected disabled>Selecciona una opción</option>
-                    <option value="corte">Corte de Caballero - $185</option>
-                    <option value="infantil">Corte infantil - 165$</option>
-                    <option value="delineado">Delineado de Cabello - $100</option>
-                    <option value="facial">Limpieza facial - 185$</option>
-                    <option value="spa">Spa - $165</option>
-                    <option value="barba">Recorte de Barba - $120</option>
-                    <option value="afeitado">Afeitado Clásico - 85$</option>
-                    <option value="bigote">Recorte de bigote - 115$</option>
-                    <option value="tratamiento">Tratamiento barba - 120$</option>
-                    <option value="Limpieza">Limpieza barba y bigote - 140$</option>
+                    <option value="185">Corte de Caballero - $185</option>
+                    <option value="165">Corte infantil - $165</option>
+                    <option value="100">Delineado de Cabello - $100</option>
+                    <option value="185">Limpieza facial - $185</option>
+                    <option value="165">Spa - $165</option>
+                    <option value="120">Recorte de Barba - $120</option>
+                    <option value="85">Afeitado Clásico - $85</option>
+                    <option value="115">Recorte de bigote - $115</option>
+                    <option value="120">Tratamiento barba - $120</option>
+                    <option value="140">Limpieza barba y bigote - $140</option>
                 </select>
             </div>
             <button type="button" id="add-servicio" class="btn-agregar">Agregar otro servicio</button>
@@ -60,6 +60,9 @@
             <!-- Botón para enviar -->
             <button type="submit" class="btn-agendar">Agendar Cita</button>
         </form>
+
+        <!-- Agregar un contenedor para mostrar el total -->
+        <p id="total">Total: $0</p>
     </main>
     <footer class="footer">
         <div class="footer-content container">
@@ -89,14 +92,39 @@
             nuevoSelect.name = 'servicios[]';
             nuevoSelect.required = true;
             nuevoSelect.innerHTML = `
-                <option value="" selected disabled>Selecciona una opción</option>
-                <option value="corte">Corte de Cabello</option>
-                <option value="barba">Corte de Barba</option>
-                <option value="facial">Limpieza Facial</option>
-                <option value="spa">Spa</option>
+                   <option value="" selected disabled>Selecciona una opción</option>
+                    <option value="185">Corte de Caballero - $185</option>
+                    <option value="165">Corte infantil - $165</option>
+                    <option value="100">Delineado de Cabello - $100</option>
+                    <option value="185">Limpieza facial - $185</option>
+                    <option value="165">Spa - $165</option>
+                    <option value="120">Recorte de Barba - $120</option>
+                    <option value="85">Afeitado Clásico - $85</option>
+                    <option value="115">Recorte de bigote - $115</option>
+                    <option value="120">Tratamiento barba - $120</option>
+                    <option value="140">Limpieza barba y bigote - $140</option>
             `;
             serviciosContainer.appendChild(nuevoSelect);
+
+            // Agregar evento para actualizar el total
+            nuevoSelect.addEventListener('change', actualizarTotal);
         });
+
+        // Función para actualizar el total de los precios
+        function actualizarTotal() {
+            const selects = document.querySelectorAll('#servicios-container select');
+            let total = 0;
+
+            selects.forEach(select => {
+                const precio = parseInt(select.value) || 0;
+                total += precio;
+            });
+
+            document.getElementById('total').textContent = `Total: $${total}`;
+        }
+
+        // Agregar evento al primer select
+        document.getElementById('servicios').addEventListener('change', actualizarTotal);
     </script>
 </body>
 </html>
