@@ -9,38 +9,38 @@
     <header>
         <div class="menu container">
             <a href="Inicio.html" class="logo">Logo</a>
-            <nav class="navbar"> <!-- Menu de Navegacion -->
+            <nav class="navbar" aria-label="Menú de navegación principal"> <!-- Menú accesible -->
                 <ul>
                     <li><a href="Inicio.html">Inicio</a></li>
                     <li><a href="Servicios.html">Servicios</a></li>
                     <li><a href="#">Agendar Cita</a></li>
                 </ul>
             </nav>
-            <a href="#" class="Usuario" target="_blank">
-                <img src="imagenes/usuraio.svg" alt="Usuario" style="width: 50px;height: 50px; vertical-align: middle; 
-                margin-right: 10px;"></a>
+            <a href="https://paginaexterna.com" class="Usuario" target="_blank"> <!-- Enlace externo -->
+                <img src="imagenes/usuraio.svg" alt="Icono de usuario"></a>
         </div>
         <div class="headerS-content container"> <!-- Contenido del Header -->
             <h1>SERVICIOS</h1>
+        </div>
     </header>
     <!-- Contenido Principal -->
     <main>
-        <div class="Servicios-content container">
-            <div class="Cortes">
+        <section class="Servicios-content container"> <!-- Uso de <section> para semántica -->
+            <article class="Servicio Cortes"> <!-- Uso de <article> para cada grupo -->
                 <h3>Cortes</h3>
                 <ul>
                     <li>Corte de Caballero - 185$</li>
                     <li>Corte infantil - 165$</li>
                 </ul>
-            </div>
-            <div class="Cortes">
+            </article>
+            <article class="Servicio Facial">
                 <h3>Facial</h3>
                 <ul>
                     <li>Limpieza facial - 185$</li>
                     <li>Spa - 165$</li>
                 </ul>
-            </div>
-            <div class="Cortes">
+            </article>
+            <article class="Servicio Barba">
                 <h3>Barba</h3>
                 <ul>
                     <li>Recorte de Barba - 125$</li>
@@ -49,28 +49,24 @@
                     <li>Tratamiento - 120$</li>
                     <li>Limpieza - 140$</li>
                 </ul>
-            </div>
-        </div>
+            </article>
+        </section>
     </main>
     <!-- Footer -->
     <hr class="divider">
-
-    <!-- Contenido del Footer -->
     <footer class="footer">
         <div class="footer-content container">
-                <div class="link">
-                    <h3>Contactos</h3>
-                    <ul>
-                        <li><img src="imagenes/tel1.svg" style="width: 50px;height: 50px; 
-                            vertical-align: middle; margin-right: 10px;" >81********</a></li>
-                        <li><img src="imagenes/wp2.svg" style="width: 50px;height: 50px; 
-                            vertical-align: middle; margin-right: 10px;">81********</a></li>
-                    </ul>                  
-                 </div>
-                 <div class="link">
-                    <li><a href="#">Agendar Cita</a></li>
-                 </div>
-            </div>             
+            <address>
+                <h3>Contactos</h3>
+                <ul>
+                    <li><img src="imagenes/tel1.svg" alt="Teléfono" class="contact-icon"> 81********</li>
+                    <li><img src="imagenes/wp2.svg" alt="WhatsApp" class="contact-icon"> 81********</li>
+                </ul>
+            </address>
+            <div class="link">
+                <a href="#">Agendar Cita</a>
+            </div>
+        </div>
     </footer>
 </body>
 </html>

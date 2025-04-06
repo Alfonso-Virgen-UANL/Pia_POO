@@ -3,87 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CitasBarberia</title>
+    <meta name="description" content="Barbería Hefesto - Servicios de cortes de cabello, barba y más.">
+    <meta name="keywords" content="barbería, cortes de cabello, barba, servicios de barbería">
+    <title>Citas Barbería Hefesto</title>
 </head>
 <body>
     <header>
         <div class="menu container">
             <a href="Inicio.html" class="logo">Logo</a>
-            <nav class="navbar"> <!-- Menu de Navegacion -->
+            <nav class="navbar" aria-label="Menú de navegación principal"> <!-- Menú accesible -->
                 <ul>
-                    <li><a href="Inicio.html">Inicio</a></li>
+                    <li><a href="Inicio.html" class="active">Inicio</a></li>
                     <li><a href="Servicios.html">Servicios</a></li>
                     <li><a href="#">Agendar Cita</a></li>
                 </ul>
             </nav>
             <a href="#" class="Usuario" target="_blank">
-                <img src="imagenes/usuraio.svg" alt="Usuario" style="width: 50px;height: 50px; 
-                vertical-align: middle; margin-right: 10px;" >
+                <img src="imagenes/usuraio.svg" alt="Icono de usuario" class="usuario-icono">
             </a>
         </div>
         <div class="header-content container"> <!-- Contenido del Header -->
-            <h1>Barberia Hefesto</h1>
+            <h1>Barbería Hefesto</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> 
                 Voluptatibus expedita non dolores nam dolorum sapiente tempora et <br>
                 incidunt amet? Unde accusantium labore possimus maxime 
                 culpa rerum officiis soluta molestias esse.</p>
-        <div class="cortes-conten">
-            <div class="corte-1">
-                <img src="imagenes/cortecaballero.jpg" alt="">
+        </div>
+        <section class="cortes-conten">
+            <article class="corte">
+                <img src="imagenes/cortecaballero.jpg" alt="Corte de Caballero">
                 <h2>Corte Caballero</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> 
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> 
                     Voluptatibus expedita non dolores nam dolorum sapiente tempora et <br>
                     incidunt amet? Unde accusantium labore possimus maxime 
                     culpa rerum officiis soluta molestias esse.</p>
-        </div>
-            <div class="corte-2">
-                <img src="imagenes/corteinfantil.jpg" alt="">
+            </article>
+            <article class="corte">
+                <img src="imagenes/corteinfantil.jpg" alt="Corte Infantil">
                 <h2>Corte Infantil</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> 
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> 
                     Voluptatibus expedita non dolores nam dolorum sapiente tempora et <br>
                     incidunt amet? Unde accusantium labore possimus maxime 
                     culpa rerum officiis soluta molestias esse.</p>
-        </div>
-            <div class="corte-3">
-                <img src="imagenes/cortebarba.jpg" alt="">
+            </article>
+            <article class="corte">
+                <img src="imagenes/cortebarba.jpg" alt="Corte de Barba">
                 <h2>Corte de Barba</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> 
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> 
                     Voluptatibus expedita non dolores nam dolorum sapiente tempora et <br>
                     incidunt amet? Unde accusantium labore possimus maxime 
                     culpa rerum officiis soluta molestias esse.</p>
-            </div>
-        </div>
+            </article>
+        </section>
     </header>
     <!-- Contenido Principal -->
     <main class="inicio">
-        <div class="inicio-content ">
-            <h1>¿Quienes Somos?</h1>
-            <img src="imagenes/bareriahefestoinicio.png" alt="">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
+        <section class="quienes-somos">
+            <h1>¿Quiénes Somos?</h1>
+            <img src="imagenes/bareriahefestoinicio.png" alt="Imagen de Barbería Hefesto">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>
                 Voluptatibus expedita non dolores nam dolorum sapiente tempora et <br>
                 incidunt amet? Unde accusantium labore possimus maxime 
                 culpa rerum officiis soluta molestias esse.</p>
-
+        </section>
     </main>
     <!-- Footer -->
     <hr class="divider">
-    <!-- Contenido del Footer -->
     <footer class="footer">
         <div class="footer-content container">
-                <div class="link">
-                    <h3>Contactos</h3>
-                    <ul>
-                        <li><img src="imagenes/tel1.svg" style="width: 50px;height: 50px; 
-                            vertical-align: middle; margin-right: 10px;" >81********</a></li>
-                        <li><img src="imagenes/wp2.svg" style="width: 50px;height: 50px; 
-                            vertical-align: middle; margin-right: 10px;">81********</a></li>
-                    </ul>                  
-                 </div>
-                 <div class="link">
-                    <li><a href="#">Agendar Cita</a></li>
-                 </div>
-            </div> 
-            
+            <address>
+                <h3>Contactos</h3>
+                <ul>
+                    <li><img src="imagenes/tel1.svg" alt="Teléfono" class="contact-icon"> 81********</li>
+                    <li><img src="imagenes/wp2.svg" alt="WhatsApp" class="contact-icon"> 81********</li>
+                </ul>
+            </address>
+            <div class="link">
+                <a href="#">Agendar Cita</a>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
