@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendar Citas</title>
+    <link rel="stylesheet" href="citascss.css">
 </head>
 <body>
     <header>
@@ -38,16 +39,22 @@
             <div id="servicios-container">
                 <select id="servicios" name="servicios[]" required>
                     <option value="" selected disabled>Selecciona una opción</option>
-                    <option value="185">Corte de Caballero - $185</option>
-                    <option value="165">Corte infantil - $165</option>
-                    <option value="100">Delineado de Cabello - $100</option>
-                    <option value="185">Limpieza facial - $185</option>
-                    <option value="165">Spa - $165</option>
-                    <option value="120">Recorte de Barba - $120</option>
-                    <option value="85">Afeitado Clásico - $85</option>
-                    <option value="115">Recorte de bigote - $115</option>
-                    <option value="120">Tratamiento barba - $120</option>
-                    <option value="140">Limpieza barba y bigote - $140</option>
+                    <optgroup label="Corte de Cabello">
+                        <option value="185">Corte de Caballero - $185</option>
+                        <option value="165">Corte infantil - $165</option>
+                        <option value="100">Delineado de Cabello - $100</option>
+                    </optgroup>
+                    <optgroup label="Facial">
+                        <option value="185">Limpieza facial - $185</option>
+                        <option value="165">Spa - $165</option>
+                    </optgroup>
+                    <optgroup label="Barba">
+                        <option value="120">Recorte de Barba - $120</option>
+                        <option value="85">Afeitado Clásico - $85</option>
+                        <option value="115">Recorte de bigote - $115</option>
+                        <option value="120">Tratamiento barba - $120</option>
+                        <option value="140">Limpieza barba y bigote - $140</option>
+                    </optgroup>
                 </select>
             </div>
             <button type="button" id="add-servicio" class="btn-agregar">Agregar otro servicio</button>
@@ -97,16 +104,22 @@
             nuevoSelect.required = true;
             nuevoSelect.innerHTML = `
                    <option value="" selected disabled>Selecciona una opción</option>
-                    <option value="185">Corte de Caballero - $185</option>
-                    <option value="165">Corte infantil - $165</option>
-                    <option value="100">Delineado de Cabello - $100</option>
-                    <option value="185">Limpieza facial - $185</option>
-                    <option value="165">Spa - $165</option>
-                    <option value="120">Recorte de Barba - $120</option>
-                    <option value="85">Afeitado Clásico - $85</option>
-                    <option value="115">Recorte de bigote - $115</option>
-                    <option value="120">Tratamiento barba - $120</option>
-                    <option value="140">Limpieza barba y bigote - $140</option>
+                    <optgroup label="Corte de Cabello">
+                        <option value="185">Corte de Caballero - $185</option>
+                        <option value="165">Corte infantil - $165</option>
+                        <option value="100">Delineado de Cabello - $100</option>
+                    </optgroup>
+                    <optgroup label="Facial">
+                        <option value="185">Limpieza facial - $185</option>
+                        <option value="165">Spa - $165</option>
+                    </optgroup>
+                    <optgroup label="Barba">
+                        <option value="120">Recorte de Barba - $120</option>
+                        <option value="85">Afeitado Clásico - $85</option>
+                        <option value="115">Recorte de bigote - $115</option>
+                        <option value="120">Tratamiento barba - $120</option>
+                        <option value="140">Limpieza barba y bigote - $140</option>
+                    </optgroup>
             `;
             serviciosContainer.appendChild(nuevoSelect);
 
