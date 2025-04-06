@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendar Citas</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Archivo CSS externo -->
 </head>
 <body>
     <header>
@@ -21,7 +20,7 @@
     </header>
     <main class="agendar-citas">
         <h1>Agendar Cita</h1>
-        <form action="procesar_cita.php" method="POST" class="form-citas">
+        <form action="#" method="POST" class="form-citas">
             <!-- Selección de fecha -->
             <label for="fecha">Selecciona el día:</label>
             <input type="date" id="fecha" name="fecha" required>
@@ -31,17 +30,22 @@
             <input type="time" id="hora" name="hora" required>
 
             <!-- Selección de servicios -->
-            <label for="servicios">Selecciona los servicios:</label>
-            <select id="servicios" name="servicios[]" multiple required>
-                <option value="corte">Corte de Cabello</option>
-                <option value="barba">Corte de Barba</option>
-                <option value="facial">Limpieza Facial</option>
-                <option value="spa">Spa</option>
-            </select>
+            <label for="servicios">Selecciona el servicio:</label>
+            <div id="servicios-container">
+                <select id="servicios" name="servicios[]" required>
+                    <option value="" selected disabled>Selecciona una opción</option>
+                    <option value="corte">Corte de Cabello</option>
+                    <option value="barba">Corte de Barba</option>
+                    <option value="facial">Limpieza Facial</option>
+                    <option value="spa">Spa</option>
+                </select>
+            </div>
+            <button type="button" id="add-servicio" class="btn-agregar">Agregar otro servicio</button>
 
             <!-- Selección de barbero -->
             <label for="barbero">Selecciona tu barbero:</label>
             <select id="barbero" name="barbero" required>
+                <option value="" selected disabled>Selecciona una opción</option>
                 <option value="barbero1">Juan Pérez</option>
                 <option value="barbero2">Carlos López</option>
                 <option value="barbero3">Luis Martínez</option>
@@ -62,5 +66,31 @@
             </address>
         </div>
     </footer>
+    <script>
+        // Agregar funcionalidad para añadir más campos de selección de servicios con un límite de 3
+        document.getElementById('add-servicio').addEventListener('click', function () {
+            const serviciosContainer = document.getElementById('servicios-container');
+            const selects = serviciosContainer.querySelectorAll('select');
+
+            // Verificar si ya hay 3 servicios seleccionados
+            if (selects.length >= 3) {
+                alert('Solo puedes seleccionar hasta 3 servicios.');
+                return;
+            }
+
+            // Crear un nuevo campo de selección de servicios
+            const nuevoSelect = document.createElement('select');
+            nuevoSelect.name = 'servicios[]';
+            nuevoSelect.required = true;
+            nuevoSelect.innerHTML = `
+                <option value="" selected disabled>Selecciona una opción</option>
+                <option value="corte">Corte de Cabello</option>
+                <option value="barba">Corte de Barba</option>
+                <option value="facial">Limpieza Facial</option>
+                <option value="spa">Spa</option>
+            `;
+            serviciosContainer.appendChild(nuevoSelect);
+        });
+    </script>
 </body>
 </html>
