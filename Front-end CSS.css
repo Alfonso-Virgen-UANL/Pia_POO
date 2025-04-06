@@ -1,1 +1,107 @@
-
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #e4e4e4;
+    color: #000;
+  }
+  
+  /* Encabezado */
+  header {
+    background-color: #0071bc;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .menu {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  .menu a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .menu a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Botón de Agendar */
+  .button-black {
+    background-color: #000;
+    color: #fff;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .button-black:hover {
+    background-color: #333;
+  }
+  
+  /* Sección de Servicios */
+  .servicios {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  
+  .servicios h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-decoration: underline;
+  }
+  
+  /* Columnas de servicios */
+  .servicios-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    text-align: left;
+  }
+  
+  .servicios-column {
+    width: 200px;
+  }
+  
+  .servicios-column h3 {
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 10px;
+  }
+  
+  .servicios-column p {
+    margin: 6px 0;
+    font-size: 1em;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-bottom: 30px;
+  }
+  
+  footer p {
+    margin: 8px 0;
+  }
+  
+  
