@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Citas</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Archivo CSS externo -->
+</head>
+<body>
+    <header>
+        <div class="menu container">
+            <a href="Inicio.html" class="logo">Logo</a>
+            <nav class="navbar" aria-label="Menú de navegación principal">
+                <ul>
+                    <li><a href="Inicio.html">Inicio</a></li>
+                    <li><a href="Servicios.html">Servicios</a></li>
+                    <li><a href="citas.html" class="active">Agendar Cita</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="agendar-citas">
+        <h1>Agendar Cita</h1>
+        <form action="procesar_cita.php" method="POST" class="form-citas">
+            <!-- Selección de fecha -->
+            <label for="fecha">Selecciona el día:</label>
+            <input type="date" id="fecha" name="fecha" required>
+
+            <!-- Selección de hora -->
+            <label for="hora">Selecciona la hora:</label>
+            <input type="time" id="hora" name="hora" required>
+
+            <!-- Selección de servicios -->
+            <label for="servicios">Selecciona los servicios:</label>
+            <select id="servicios" name="servicios[]" multiple required>
+                <option value="corte">Corte de Cabello</option>
+                <option value="barba">Corte de Barba</option>
+                <option value="facial">Limpieza Facial</option>
+                <option value="spa">Spa</option>
+            </select>
+
+            <!-- Selección de barbero -->
+            <label for="barbero">Selecciona tu barbero:</label>
+            <select id="barbero" name="barbero" required>
+                <option value="barbero1">Juan Pérez</option>
+                <option value="barbero2">Carlos López</option>
+                <option value="barbero3">Luis Martínez</option>
+            </select>
+
+            <!-- Botón para enviar -->
+            <button type="submit" class="btn-agendar">Agendar Cita</button>
+        </form>
+    </main>
+    <footer class="footer">
+        <div class="footer-content container">
+            <address>
+                <h3>Contactos</h3>
+                <ul>
+                    <li><img src="imagenes/tel1.svg" alt="Teléfono" class="contact-icon"> 81********</li>
+                    <li><img src="imagenes/wp2.svg" alt="WhatsApp" class="contact-icon"> 81********</li>
+                </ul>
+            </address>
+        </div>
+    </footer>
+</body>
+</html>
