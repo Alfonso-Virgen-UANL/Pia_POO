@@ -207,7 +207,7 @@ margin-left: 350px;
   }
 
   .quienes-somos p {
-      font-size: 0.9rem; /* Reduce el tamaño del texto */
+      font-size: 2.0rem; /* Reduce el tamaño del texto */
       line-height: 1.4; /* Ajusta el espaciado entre líneas */
       text-align: center; /* Centra el texto */
   }
