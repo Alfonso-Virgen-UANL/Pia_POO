@@ -1,40 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f0f4f8;
-    color: #212529;
-  }
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+/* Header */
+.header-content.container {
+text-align: center;
+padding: 20px;
+}
+header {
+  background-color: #ffffff;
+  color: #333;
+  padding: 25px 0;
+}
+.header-content h1 {
+display: inline-block;
+padding: 10px 300px; /* Ajusta el espacio interno */
+
+}
+
+.menu.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.navbar a.active {
+  font-weight: bold;
+  border-bottom: 2px solid #333;
   
-  header {
-    background-color: #2d2e2d;
-    padding: 10px 20px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  header h1 {
-    margin: 0;
-  }
-  
-  nav a {
-    color: white;
-    margin: 0 10px;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .container {
-    max-width: 400px;
+}
+
+.navbar a:hover {
+  color: #e2c696;
+}
+
+.usuario-icono {
+  width: 30px;
+  height: 30px;
+}
+
+  .citas-container {
+    max-width: 700px;
     background-color: #ffffff;
-    margin: 20px auto;
+    margin: 15px auto;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
   }
-  
+  .agendar-citas {
+    max-width: 900px;
+    background-color: #ffffff;
+    margin: 15px auto; /* Centra horizontalmente */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centra los elementos dentro del contenedor */
+  }
+
+
   h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #343a40;
+    border-bottom: 2px solid #343a40;
+    padding-bottom: 5px;
+  }
+  h3 {
     text-align: center;
     margin-bottom: 20px;
     color: #343a40;
@@ -46,15 +107,17 @@ body {
     display: block;
     margin: 15px 0 5px;
     font-weight: bold;
+    text-align: center;
   }
   
   select, input, textarea {
-    width: 100%;
+    display: block; /* Asegura que cada elemento esté en su propia línea */
+    margin: 0 auto 8px; /* Centra horizontalmente y agrega margen inferior */
+    width: 50%;
     padding: 10px;
     border: 1px solid #ced4da;
     border-radius: 6px;
-    margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 15px;
   }
   
   .selected-services {
@@ -65,15 +128,15 @@ body {
     font-size: 14px;
   }
   
-  .total {
-    text-align: right;
-    font-size: 18px;
+  p {
+    text-align: center;
+    font-size: 19px;
     font-weight: bold;
     margin-top: 20px;
   }
   
   button {
-    width: 100%;
+    width: 50%;
     padding: 12px;
     background-color: #393b3a;
     color: white;
@@ -85,7 +148,7 @@ body {
   }
   
   button:hover {
-    background-color: #373837;
+    background-color: #EAD2AB;
   }
   
   .footer {
@@ -93,4 +156,32 @@ body {
     font-size: 14px;
     margin-top: 20px;
     color: #6c757d;
+  }
+  .footer-content {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
+    gap: 10px; 
+    padding: 5px ;
+  }
+  
+  .footer address {
+    font-style: normal;
+  }
+  
+  .footer .contact-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+
+
+  .footer ul {
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+    display: flex;
+    gap: 150px;
+    justify-content: center;
   }
