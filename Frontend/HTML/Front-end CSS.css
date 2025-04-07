@@ -24,7 +24,7 @@ header {
 }
 .header-content h1 {
 display: inline-block;
-padding: 10px 400px; /* Ajusta el espacio interno */
+padding: 10px 300px; /* Ajusta el espacio interno */
 background: linear-gradient(to left, #e4dcd8, rgba(0, 0, 0, 0)); 
   color: #333;
   font-size: 2.5rem;
@@ -116,30 +116,27 @@ width: 50%;
   background-image: url(imagenes/bareriahefestoinicio.png);
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: contain; /* Cambia a "contain" para que la imagen se ajuste completamente */
-  width: 50%; /* Ajusta el ancho para que sea proporcional al texto */
-  height: 1000px; /* Permite que la altura se ajuste automáticamente */
-  margin: 0; /* Elimina márgenes innecesarios */
+  background-size: contain; 
+  width: 50%; 
+  height: 1000px; 
+  margin: 0; 
   background-color: #dfdfdf;
 }
 
 .quienes-somos h1 {
   font-size: 2rem;
   margin-bottom: 15px;
-  width: 350px; /* Ocupa todo el ancho para que el título esté arriba */
-  text-align: left; /* Alinea el título a la izquierda */
+  width: 405px; 
+  text-align: left; 
+  margin-left: auto;
   color: #000000;
 }
 
-
-
 .quienes-somos p {
-  font-size: 1rem;
-  line-height: 1.5;
-  max-width: 50%; /* Limita el ancho del texto */
-  margin: 0; /* Elimina márgenes innecesarios */
-  text-align: left; /* Alinea el texto a la izquierda */
-  color: #000000;
+  font-size: 0.9rem; 
+  line-height: 1.4; 
+  text-align: left; 
+  margin-left: auto; 
 }
 
 /* Footer */
@@ -173,6 +170,91 @@ margin-left: 350px;
   font-size: 1rem;
   font-weight: bold;
 }
+
+/* Media Query para pantallas de ancho máximo de 768px */
+@media (max-width: 768px) {
+  /* Ajustes generales */
+  body {
+      font-size: 0.9rem; /* Reduce el tamaño de la fuente */
+  }
+
+  /* Header */
+  .header-content h1 {
+      font-size: 2rem; /* Reduce el tamaño del título */
+      padding: 10px 20px; /* Ajusta el padding */
+  }
+
+  .menu.container {
+      flex-direction: column; /* Apila los elementos del menú */
+      align-items: center;
+  }
+
+  .navbar ul {
+      flex-direction: column; /* Apila los enlaces del menú */
+      gap: 10px; /* Espaciado entre enlaces */
+  }
+
+  /* Sección "¿Quiénes Somos?" */
+  .quienes-somos {
+      flex-direction: column; /* Apila el texto y la imagen */
+      align-items: center;
+      padding: 20px;
+  }
+
+  .quienes-somos-1, .quienes-somos-2 {
+      width: 100%; /* Ocupa todo el ancho de la pantalla */
+      padding: 10px; /* Reduce el padding */
+  }
+
+  .quienes-somos p {
+      font-size: 0.9rem; /* Reduce el tamaño del texto */
+      line-height: 1.4; /* Ajusta el espaciado entre líneas */
+      text-align: center; /* Centra el texto */
+  }
+
+  /* Cortes Section */
+  .cortes-conten {
+      flex-direction: column; /* Apila los artículos */
+      align-items: center;
+  }
+
+  .corte {
+      max-width: 90%; /* Reduce el ancho de los artículos */
+      margin: 10px 0; /* Ajusta el margen */
+  }
+
+  /* Footer */
+  .footer-content {
+      flex-direction: column; /* Apila los elementos del footer */
+      align-items: center;
+      text-align: center;
+  }
+
+  .footer .link a {
+      margin-left: 0; /* Elimina el margen izquierdo */
+  }
+}
+
+/* Media Query para pantallas de ancho máximo de 480px */
+@media (max-width: 480px) {
+  /* Ajustes adicionales para pantallas muy pequeñas */
+  .header-content h1 {
+      font-size: 1.8rem; /* Reduce aún más el tamaño del título */
+  }
+
+  .navbar ul {
+      gap: 5px; /* Reduce el espaciado entre enlaces */
+  }
+
+  .quienes-somos p {
+      font-size: 0.8rem; /* Reduce el tamaño del texto */
+  }
+
+  .corte img {
+      width: 100%; /* Asegura que las imágenes se ajusten al ancho */
+  }
+}
+
 
 
 
