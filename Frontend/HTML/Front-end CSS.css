@@ -1,107 +1,179 @@
-/* Reset básico */
+/* General Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #e4e4e4;
-    color: #000;
-  }
-  
-  /* Encabezado */
-  header {
-    background-color: #0071bc;
-    color: #fff;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo {
-    font-size: 1.2em;
-    font-weight: bold;
-  }
-  
-  .menu {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-  }
-  
-  .menu a {
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .menu a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Botón de Agendar */
-  .button-black {
-    background-color: #000;
-    color: #fff;
-    padding: 6px 14px;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .button-black:hover {
-    background-color: #333;
-  }
-  
-  /* Sección de Servicios */
-  .servicios {
-    text-align: center;
-    padding: 40px 20px;
-  }
-  
-  .servicios h2 {
-    font-size: 2em;
-    margin-bottom: 10px;
-    text-decoration: underline;
-  }
-  
-  /* Columnas de servicios */
-  .servicios-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-top: 30px;
-    text-align: left;
-  }
-  
-  .servicios-column {
-    width: 200px;
-  }
-  
-  .servicios-column h3 {
-    text-align: center;
-    text-decoration: underline;
-    margin-bottom: 10px;
-  }
-  
-  .servicios-column p {
-    margin: 6px 0;
-    font-size: 1em;
-  }
-  
-  /* Footer */
-  footer {
-    text-align: center;
-    margin-top: 30px;
-    padding-bottom: 30px;
-  }
-  
-  footer p {
-    margin: 8px 0;
-  }
-  
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+/* Header */
+.header-content.container {
+text-align: center;
+padding: 20px;
+}
+header {
+  background-color: #ffffff;
+  color: #333;
+  padding: 0px 0;
+}
+.header-content h1 {
+display: inline-block;
+padding: 10px 400px; /* Ajusta el espacio interno */
+background: linear-gradient(to left, #e4dcd8, rgba(0, 0, 0, 0)); 
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  border-radius: 5px; /* Opcional: bordes redondeados */
+}
+
+.menu.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.navbar a.active {
+  font-weight: bold;
+  border-bottom: 2px solid #333;
+}
+
+.usuario-icono {
+  width: 30px;
+  height: 30px;
+}
+
+/* Cortes Section */
+.cortes-conten {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 20px;
+  background-color: #dfdfdf;
+}
+
+.corte {
+  text-align: center;
+  margin: 20px;
+  max-width: 300px;
+}
+
+.corte img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.corte h2 {
+  font-size: 1.5rem;
+  margin: 10px 0;
+  color : #000000;
+}
+
+.corte p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color : #000000;
+}
+
+/* Main Section */
+.quienes-somos {
+  display: flex;
+}
+
+.quienes-somos-1{
+width: 50%;
+  padding: 350px 250px 0 250px;
+  background-color: #E6CAA0;
+}
+
+.quienes-somos-2 {
+  background-image: url(imagenes/bareriahefestoinicio.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain; /* Cambia a "contain" para que la imagen se ajuste completamente */
+  width: 50%; /* Ajusta el ancho para que sea proporcional al texto */
+  height: 1000px; /* Permite que la altura se ajuste automáticamente */
+  margin: 0; /* Elimina márgenes innecesarios */
+  background-color: #E6CAA0;
+}
+
+.quienes-somos h1 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  width: 350px; /* Ocupa todo el ancho para que el título esté arriba */
+  text-align: left; /* Alinea el título a la izquierda */
+  color: #000000;
+}
+
+
+
+.quienes-somos p {
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 50%; /* Limita el ancho del texto */
+  margin: 0; /* Elimina márgenes innecesarios */
+  text-align: left; /* Alinea el texto a la izquierda */
+  color: #000000;
+}
+
+/* Footer */
+.footer {
+  background-color: #a5a1a1;
+  color: #070707;
+  padding: 10px 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 5px ;
+}
+
+.footer address {
+  font-style: normal;
+}
+
+.footer .contact-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.footer .link a {
+margin-left: 350px;
+  color: #000000;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+
+
+
