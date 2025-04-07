@@ -20,7 +20,7 @@ padding: 20px;
 header {
   background-color: #ffffff;
   color: #333;
-  padding: 0px 0;
+  padding: 25px 0;
 }
 .header-content h1 {
 display: inline-block;
@@ -109,7 +109,7 @@ background: linear-gradient(to left, #e4dcd8, rgba(0, 0, 0, 0));
 .quienes-somos-1{
 width: 50%;
   padding: 350px 250px 0 250px;
-  background-color: #E6CAA0;
+  background-color: #dfdfdf;
 }
 
 .quienes-somos-2 {
@@ -120,7 +120,7 @@ width: 50%;
   width: 50%; /* Ajusta el ancho para que sea proporcional al texto */
   height: 1000px; /* Permite que la altura se ajuste automáticamente */
   margin: 0; /* Elimina márgenes innecesarios */
-  background-color: #E6CAA0;
+  background-color: #dfdfdf;
 }
 
 .quienes-somos h1 {
@@ -144,7 +144,7 @@ width: 50%;
 
 /* Footer */
 .footer {
-  background-color: #a5a1a1;
+  background-color: #ffffff;
   color: #070707;
   padding: 10px 0;
 }
