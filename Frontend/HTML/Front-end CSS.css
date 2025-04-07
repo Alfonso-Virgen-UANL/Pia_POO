@@ -198,7 +198,7 @@ margin-left: 350px;
   .quienes-somos {
       flex-direction: column; /* Apila el texto y la imagen */
       align-items: center;
-      padding: 20px;
+      padding: 30px;
   }
 
   .quienes-somos-1, .quienes-somos-2 {
