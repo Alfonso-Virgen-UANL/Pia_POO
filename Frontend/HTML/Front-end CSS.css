@@ -9,7 +9,7 @@ body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
   color: #333;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
 }
 
 /* Header */
@@ -21,15 +21,11 @@ header {
   background-color: #ffffff;
   color: #333;
   padding: 25px 0;
+  
 }
 .header-content h1 {
 display: inline-block;
 padding: 10px 300px; /* Ajusta el espacio interno */
-background: linear-gradient(to left, #e4dcd8, rgba(0, 0, 0, 0)); 
-  color: #333;
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  border-radius: 5px; /* Opcional: bordes redondeados */
 }
 
 .menu.container {
@@ -63,6 +59,9 @@ background: linear-gradient(to left, #e4dcd8, rgba(0, 0, 0, 0));
   border-bottom: 2px solid #333;
 }
 
+.navbar a:hover {
+  color: #e2c696;
+}
 .usuario-icono {
   width: 30px;
   height: 30px;
@@ -70,11 +69,17 @@ background: linear-gradient(to left, #e4dcd8, rgba(0, 0, 0, 0));
 
 /* Cortes Section */
 .cortes-conten {
+  max-width: 1600px;
+    background-color: #ffffff;
+    margin: 15px auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 20px;
-  background-color: #dfdfdf;
+  background-color: #979797f6;
 }
 
 .corte {
@@ -102,37 +107,48 @@ background: linear-gradient(to left, #e4dcd8, rgba(0, 0, 0, 0));
 }
 
 /* Main Section */
+.inicio{
+  max-width: 1600px;
+    background-color: #ffffff;
+    margin: 15px auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
 .quienes-somos {
   display: flex;
 }
 
 .quienes-somos-1{
 width: 50%;
-  padding: 350px 250px 0 250px;
-  background-color: #dfdfdf;
+padding: 250px 250px 0 250px;
+background-color: #979797f6;
+border-radius: 12px;
 }
 
 .quienes-somos-2 {
-  background-image: url(imagenes/bareriahefestoinicio.png);
+  background-image: url(imagenes/barberriahorizontal.png);
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: contain; 
+  background-size: cover; 
   width: 50%; 
-  height: 1000px; 
+  height: 700px; 
   margin: 0; 
-  background-color: #dfdfdf;
+  background-color: #979797f6;
+  border-radius: 12px;
 }
 
-.quienes-somos h1 {
+.quienes-somos h2 {
   font-size: 2rem;
-  margin-bottom: 15px;
-  width: 405px; 
+  margin-bottom: 1px;
+  width: 400px; 
   text-align: left; 
   margin-left: auto;
-  color: #000000;
+  color: #ffffff;
 }
 
 .quienes-somos p {
+  color: #ffffff;
   font-size: 0.9rem; 
   line-height: 1.4; 
   text-align: left; 
@@ -148,8 +164,10 @@ width: 50%;
 
 .footer-content {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
+  gap: 10px; 
   padding: 5px ;
 }
 
@@ -163,12 +181,33 @@ width: 50%;
   margin-right: 10px;
 }
 
-.footer .link a {
-margin-left: 350px;
-  color: #000000;
+.footer ul {
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+  display: flex;
+  gap: 150px;
+  justify-content: center;
+}
+
+.footer a {
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: bold;
+  width: 50%;
+  padding: 12px;
+  background-color: #393b3a; /* Fondo inicial */
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+}
+
+.footer a:hover {
+  background-color: #EAD2AB; /* Cambia el fondo al pasar el mouse */
+  color: #393b3a; /* Cambia el color del texto al pasar el mouse */
+  text-decoration: none; /* Asegura que no haya subrayado */
 }
 
 /* Media Query para pantallas de ancho máximo de 768px */
