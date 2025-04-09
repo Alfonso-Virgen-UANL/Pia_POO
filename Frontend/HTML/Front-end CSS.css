@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Wallpoet&display=swap');
+
 /* General Reset */
 * {
   margin: 0;
@@ -9,7 +11,26 @@ body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
   color: #333;
-  background-color: #ffffff;
+  background-image: url(imagenes/vintageF.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative; /* Asegura que el pseudo-elemento se posicione correctamente */
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: inherit; /* Usa la misma imagen de fondo */
+  background-position: inherit;
+  background-repeat: inherit;
+  background-size: inherit;
+  filter: blur(10px); /* Ajusta el nivel de desenfoque */
+  z-index: -1; /* Asegura que quede detrás del contenido */
 }
 
 /* Header */
@@ -18,7 +39,7 @@ text-align: center;
 padding: 20px;
 }
 header {
-  background-color: #ffffff;
+ 
   color: #333;
   padding: 25px 0;
   
@@ -26,6 +47,9 @@ header {
 .header-content h1 {
 display: inline-block;
 padding: 10px 300px; /* Ajusta el espacio interno */
+font-family: 'Cinzel', serif;
+font-size: 3.5rem; /* Tamaño del título */
+text-decoration: underline overline; 
 }
 
 .menu.container {
@@ -49,6 +73,9 @@ padding: 10px 300px; /* Ajusta el espacio interno */
 }
 
 .navbar a {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: normal;
   color: #333;
   text-decoration: none;
   font-size: 1rem;
@@ -56,30 +83,30 @@ padding: 10px 300px; /* Ajusta el espacio interno */
 
 .navbar a.active {
   font-weight: bold;
-  border-bottom: 2px solid #333;
+  border-bottom: 3px solid #075f07;
 }
 
 .navbar a:hover {
-  color: #e2c696;
+  color: #ce2929;
 }
 .usuario-icono {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
 }
 
 /* Cortes Section */
 .cortes-conten {
-  max-width: 1600px;
+  max-width: 2300px;
     background-color: #ffffff;
     margin: 15px auto;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.938);
   display: flex;
-  justify-content: space-around;
+  justify-content:space-evenly;
   flex-wrap: wrap;
   padding: 20px;
-  background-color: #979797f6;
+  background-color: #334433;
 }
 
 .corte {
@@ -95,35 +122,49 @@ padding: 10px 300px; /* Ajusta el espacio interno */
 }
 
 .corte h2 {
-  font-size: 1.5rem;
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 2rem;
   margin: 10px 0;
-  color : #000000;
+  color: #000000;
 }
 
 .corte p {
-  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.2rem;
+  text-align: justify;
   line-height: 1.5;
-  color : #000000;
+  color : #dad1d1f6;
 }
 
 /* Main Section */
-.inicio{
-  max-width: 1600px;
-    background-color: #ffffff;
-    margin: 15px auto;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-.quienes-somos {
-  display: flex;
+
+.quienes-somos-content {
+  max-width: 2300px;
+  background-color: #ffffff;
+  margin: 15px auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgb(0, 0, 0);
+display: flex;
+justify-content: space-evenly;
+flex-wrap: wrap; 
+padding: 10px;
+background-color: #334433;
 }
 
 .quienes-somos-1{
-width: 50%;
-padding: 250px 250px 0 250px;
-background-color: #979797f6;
-border-radius: 12px;
+  text-align: justify;
+  margin: 150px;
+  display: right;
+  max-width: 600px;
+  margin-top: 250px;
+  margin-left: 50px;
+
 }
 
 .quienes-somos-2 {
@@ -133,31 +174,38 @@ border-radius: 12px;
   background-size: cover; 
   width: 50%; 
   height: 700px; 
-  margin: 0; 
+  margin-top: 10px;
+  margin-bottom: 10px; 
   background-color: #979797f6;
   border-radius: 12px;
+
 }
 
-.quienes-somos h2 {
-  font-size: 2rem;
-  margin-bottom: 1px;
-  width: 400px; 
-  text-align: left; 
-  margin-left: auto;
-  color: #ffffff;
-}
+.quienes-somos-1 h2{
+  font-family: "Cinzel", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  text-align: left;
+  color: #000000;
+  font-size: 2.5rem;
+  max-width: 600px;
+  }
 
-.quienes-somos p {
-  color: #ffffff;
-  font-size: 0.9rem; 
-  line-height: 1.4; 
-  text-align: left; 
-  margin-left: auto; 
+.quienes-somos-1 p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.2rem;
+  text-align: justify;
+  line-height: 1.5;
+  color : #dad1d1f6;
 }
 
 /* Footer */
 .footer {
-  background-color: #ffffff;
+  position: relative; /* Asegura que el footer esté por encima del pseudo-elemento */
+  z-index: 1; /* Coloca el footer por encima del pseudo-elemento */
   color: #070707;
   padding: 10px 0;
 }
@@ -175,9 +223,19 @@ border-radius: 12px;
   font-style: normal;
 }
 
+footer h3 {
+  font-family: "poppins", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 2rem;
+  margin-bottom: 10px; 
+  text-decoration: underline;
+}
+
 .footer .contact-icon {
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 45pxpx;
   margin-right: 10px;
 }
 
@@ -188,6 +246,13 @@ border-radius: 12px;
   display: flex;
   gap: 150px;
   justify-content: center;
+}
+
+.footer li  {
+  font-family: poppins, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.7rem;
 }
 
 .footer a {
@@ -293,6 +358,8 @@ border-radius: 12px;
       width: 100%; /* Asegura que las imágenes se ajusten al ancho */
   }
 }
+
+
 
 
 
