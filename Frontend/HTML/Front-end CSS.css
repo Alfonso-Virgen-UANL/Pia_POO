@@ -59,6 +59,7 @@ text-decoration: underline overline;
   padding: 0 20px;
 }
 
+
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
@@ -289,12 +290,11 @@ footer h3 {
   }
 
   .menu.container {
-      flex-direction: column; /* Apila los elementos del menú */
       align-items: center;
   }
 
   .navbar ul {
-      flex-direction: column; /* Apila los enlaces del menú */
+      flex-direction: row; /* Apila los enlaces del menú */
       gap: 10px; /* Espaciado entre enlaces */
   }
 
@@ -331,11 +331,12 @@ footer h3 {
   .footer-content {
       flex-direction: column; /* Apila los elementos del footer */
       align-items: center;
-      text-align: center;
+      text-align: center;;
   }
 
-  .footer .link a {
-      margin-left: 0; /* Elimina el margen izquierdo */
+  .footer ul {
+      flex-direction: column; /* Apila los enlaces del footer */
+      margin: 0; /* Elimina el margen */
   }
 }
 
@@ -358,10 +359,3 @@ footer h3 {
       width: 100%; /* Asegura que las imágenes se ajusten al ancho */
   }
 }
-
-
-
-
-
-
-
