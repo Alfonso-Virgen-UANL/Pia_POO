@@ -6,7 +6,7 @@
     <meta name="description" content="Barbería Hefesto - Servicios de cortes de cabello, barba y más.">
     <meta name="keywords" content="barbería, cortes de cabello, barba, servicios de barbería">
     <title>Citas Barbería Hefesto</title>
-    <link rel="stylesheet" href="/Proyecto/Pia_POO/Frontend/HTML/quienesomos css.css">
+    <link rel="stylesheet" href="Front-end CSS.css">
 </head>
 <body>
     <header>
@@ -25,14 +25,10 @@
         </div>
         <div class="header-content container"> <!-- Contenido del Header -->
             <h1>Barbería Hefesto</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> 
-                Voluptatibus expedita non dolores nam dolorum sapiente tempora et <br>
-                incidunt amet? Unde accusantium labore possimus maxime 
-                culpa rerum officiis soluta molestias esse.</p>
         </div>
         <section class="cortes-conten">
             <article class="corte">
-                <img src="imagenes/cortecaballero.jpg" alt="Corte de Caballero">
+                <img src="imagenes/cortecaballero.jpg" alt="Corte-Caballero">
                 <h2>Corte Caballero</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> 
                     Voluptatibus expedita non dolores nam dolorum sapiente tempora et <br>
@@ -40,7 +36,7 @@
                     culpa rerum officiis soluta molestias esse.</p>
             </article>
             <article class="corte">
-                <img src="imagenes/corteinfantil.jpg" alt="Corte Infantil">
+                <img src="imagenes/corteinfantil.jpg" alt="Corte-Infantil">
                 <h2>Corte Infantil</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> 
                     Voluptatibus expedita non dolores nam dolorum sapiente tempora et <br>
@@ -48,40 +44,46 @@
                     culpa rerum officiis soluta molestias esse.</p>
             </article>
             <article class="corte">
-                <img src="imagenes/cortebarba.jpg" alt="Corte de Barba">
+                <img src="imagenes/cortebarba.jpg" alt="Corte-Barba">
                 <h2>Corte de Barba</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> 
                     Voluptatibus expedita non dolores nam dolorum sapiente tempora et <br>
                     incidunt amet? Unde accusantium labore possimus maxime 
-                    culpa rerum officiis soluta molestias esse.</p>
+                    culpa rerum officiis soluta molestias esse</p>
             </article>
         </section>
     </header>
     <!-- Contenido Principal -->
     <main class="inicio">
-        <section class="quienes-somos">
-            <h1>¿Quiénes Somos?</h1>
-            <img src="imagenes/bareriahefestoinicio.png" alt="Imagen de Barbería Hefesto">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>
-                Voluptatibus expedita non dolores nam dolorum sapiente tempora et <br>
-                incidunt amet? Unde accusantium labore possimus maxime 
-                culpa rerum officiis soluta molestias esse.</p>
+        <section class="quienes-somos-content">
+            <div class="quienes-somos-1">
+                <h2>¿Quiénes Somos?</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus expedita non dolores nam dolorum sapiente tempora et incidunt amet?</p>
+                <p>Unde accusantium labore possimus maxime culpa rerum officiis soluta molestias esse</p>
+            </div>
+            <div class="quienes-somos-2" aria-hidden="true"></div> <!-- Marca como decorativa si no es contenido relevante -->
         </section>
     </main>
     <!-- Footer -->
-    <hr class="divider">
+    
     <footer class="footer">
+        
         <div class="footer-content container">
+            <h3>Contactos</h3>
             <address>
-                <h3>Contactos</h3>
                 <ul>
-                    <li><img src="imagenes/tel1.svg" alt="Teléfono" class="contact-icon"> 81********</li>
-                    <li><img src="imagenes/wp2.svg" alt="WhatsApp" class="contact-icon"> 81********</li>
+                    <li>
+                        <img src="imagenes/tel1.svg" alt="Teléfono de contacto" class="contact-icon"> 81********
+                    </li>
+                    <li>
+                        <img src="imagenes/wp2.svg" alt="WhatsApp de contacto" class="contact-icon" >81********
+                    </li>
+                    <li>
+                        <a href="citas.html">Agendar Cita</a>
+                    </li>
                 </ul>
             </address>
-            <div class="link">
-                <a href="citas.html">Agendar Cita</a>
-            </div>
+
         </div>
     </footer>
 </body>
