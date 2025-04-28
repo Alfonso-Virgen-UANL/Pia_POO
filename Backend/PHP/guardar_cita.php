@@ -27,7 +27,8 @@ foreach ($_POST['servicios'] as $precio) {
 }
 
 // Y ya aca se manda la información a la base de datos
-$stmt = $conexion->prepare("INSERT INTO citas (fecha, hora, servicios, barbero, total) VALUES (?, ?, ?, ?, ?)");
+$stmt = $conexion->prepare("INSERT INTO citas (fecha, hora, servicios, barbero, total) 
+                            VALUES (?, ?, ?, ?, ?)");
 $stmt->bind_param("ssssd", $fecha, $hora, $servicios, $barbero, $total);
 
 if ($stmt->execute()) {
