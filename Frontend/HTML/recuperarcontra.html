@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="recuoerarcontra.css">
+</head>
+<body>
+    <div class="password-recovery-container">
+        <div class="logo">
+            <!-- Reemplaza con tu logo -->
+            <img src="imagenes/logo.svg" alt="Logo">
+        </div>
+        
+        <div id="recovery-form">
+            <h1>¿Olvidaste tu contraseña?</h1>
+            <p>Ingresa tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</p>
+            
+            <div class="success-message" id="success-message">
+                ¡Listo! Hemos enviado un enlace de recuperación a tu correo electrónico.
+            </div>
+            
+            <form id="password-recovery-form">
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+                </div>
+                
+                <button type="submit" class="submit-btn">Enviar enlace de recuperación</button>
+            </form>
+            
+            <div class="back-to-login">
+                ¿Recordaste tu contraseña? <a href="sesion-cliente.html">Inicia sesión</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('password-recovery-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simular envío del formulario
+            const email = document.getElementById('email').value;
+            
+            // Aquí iría la lógica real para enviar el correo de recuperación
+            console.log('Enviando enlace de recuperación a:', email);
+            
+            // Mostrar mensaje de éxito
+            document.getElementById('success-message').style.display = 'block';
+            document.getElementById('recovery-form').querySelector('p').style.display = 'none';
+            
+            // Opcional: Limpiar el campo después de enviar
+            document.getElementById('email').value = '';
+            
+            // En una implementación real, aquí harías una petición AJAX a tu backend
+            // fetch('/api/password-recovery', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({ email: email })
+            // })
+            // .then(response => response.json())
+            // .then(data => {
+            //     document.getElementById('success-message').style.display = 'block';
+            // })
+            // .catch(error => {
+            //     alert('Ocurrió un error. Por favor intenta nuevamente.');
+            // });
+        });
+    </script>
+</body>
+</html>
