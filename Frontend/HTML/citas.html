@@ -151,6 +151,14 @@
 
         // Agregar evento al primer select
         document.getElementById('servicios').addEventListener('change', actualizarTotal);
+
+        // Mostrar mensaje de confirmación al enviar el formulario
+        document.querySelector('.form-citas').addEventListener('submit', function (event) {
+            event.preventDefault(); // Evitar el envío real del formulario
+            alert('¡Cita agendada con éxito!');
+            this.reset(); // Reiniciar el formulario después de mostrar el mensaje
+            document.getElementById('total').textContent = 'Total: $0'; // Reiniciar el total
+        });
     </script>
 </body>
 </html>
