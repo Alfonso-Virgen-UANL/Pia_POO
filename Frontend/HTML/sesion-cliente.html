@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesion</title>
+    <link rel="stylesheet" href="sesion-cliente.css">
+</head>
+<body>
+    <header>
+        <div class="menu container">
+            <a href="Inicio.html" class="logo">
+                <img src="imagenes/logo.svg" alt="Logo" class="logo-img">
+            </a>
+            <nav class="navbar" aria-label="Menú de navegación principal">
+                <ul>
+                    <li><a href="Inicio.html">Inicio</a></li>
+                    <li><a href="Servicios.html">Servicios</a></li>
+                    <li><a href="citas.html" class="active">Agendar Cita</a></li>
+                </ul>
+            </nav>
+        </nav>
+        <a href="#" class="Usuario" target="_blank">
+            <img src="imagenes/usuraio.svg" alt="Icono de usuario" class="usuario-icono">
+        </a>
+        </div>
+    </header>
+    <main class="container1">
+        <!-- Formulario de Login -->
+        <div id="login-form" class="form-container active">
+            <form class="form">
+                <h2>Iniciar Sesión</h2>
+                
+                <div class="input-group">
+                    <label for="login-email">Correo Electrónico</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="login-password">Contraseña</label>
+                    <div class="password-container">
+                        <input type="password" id="login-password" required>
+                        <span class="toggle-password" onclick="togglePassword('login-password')">Mostrar</span>
+                    </div>
+                </div>
+                
+                <div class="forgot-password">
+                    <a href="#" onclick="showForgotPassword()">¿Olvidaste tu contraseña?</a>
+                </div>
+                
+                <button type="button" onclick="login()">Iniciar Sesión</button>
+                
+                <div class="switch-form">
+                    ¿No tienes una cuenta? <a href="#" onclick="showRegister()">Regístrate</a>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Formulario de Registro -->
+        <div id="register-form" class="form-container hidden">
+            <form class="form">
+                <h2>Registro</h2>
+                
+                <div class="input-group">
+                    <label for="register-name">Nombre Completo</label>
+                    <input type="text" id="register-name" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="register-email">Correo Electrónico</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="register-password">Contraseña</label>
+                    <div class="password-container">
+                        <input type="password" id="register-password" required>
+                        <span class="toggle-password" onclick="togglePassword('register-password')">Mostrar</span>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="register-confirm-password">Confirmar Contraseña</label>
+                    <div class="password-container">
+                        <input type="password" id="register-confirm-password" required>
+                        <span class="toggle-password" onclick="togglePassword('register-confirm-password')">Mostrar</span>
+                    </div>
+                </div>
+                
+                <button type="button" onclick="register()">Registrarse</button>
+                
+                <div class="switch-form">
+                    ¿Ya tienes una cuenta? <a href="#" onclick="showLogin()">Inicia Sesión</a>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Formulario de Recuperación de Contraseña -->
+        <div id="forgot-password-form" class="form-container hidden">
+            <form class="form">
+                <h2>Recuperar Contraseña</h2>
+                
+                <div class="input-group">
+                    <label for="forgot-email">Correo Electrónico</label>
+                    <input type="email" id="forgot-email" required>
+                </div>
+                
+                <button type="button" onclick="sendResetLink()">Enviar Enlace de Recuperación</button>
+                
+                <div class="switch-form">
+                    <a href="#" onclick="showLogin()">Volver al Inicio de Sesión</a>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-content container">
+            <h3>Contactos</h3>
+            <address>
+                <ul>
+                    <li>
+                        <img src="imagenes/tel1.svg" alt="Teléfono de contacto" class="contact-icon"> 81********
+                    </li>
+                    <li>
+                        <img src="imagenes/wp2.svg" alt="WhatsApp de contacto" class="contact-icon"> 81********
+                    </li>
+                </ul>
+            </address>
+        </div>
+    </footer>
+
+    <script>
+        // Función para alternar entre mostrar/ocultar contraseña
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const toggle = input.nextElementSibling;
+            
+            if (input.type === "password") {
+                input.type = "text";
+                toggle.textContent = "Ocultar";
+            } else {
+                input.type = "password";
+                toggle.textContent = "Mostrar";
+            }
+        }
+        
+        // Funciones para alternar entre formularios
+        function showLogin() {
+            document.getElementById('login-form').classList.add('active');
+            document.getElementById('register-form').classList.remove('active');
+            document.getElementById('forgot-password-form').classList.remove('active');
+        }
+        
+        function showRegister() {
+            document.getElementById('login-form').classList.remove('active');
+            document.getElementById('register-form').classList.add('active');
+            document.getElementById('forgot-password-form').classList.remove('active');
+        }
+        
+        function showForgotPassword() {
+            document.getElementById('login-form').classList.remove('active');
+            document.getElementById('register-form').classList.remove('active');
+            document.getElementById('forgot-password-form').classList.add('active');
+        }
+        
+        // Funciones para manejar el envío de formularios (simuladas)
+        function login() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            // Aquí iría la lógica real de autenticación
+            console.log('Iniciando sesión con:', email, password);
+            alert('Función de login simulada. En una implementación real, esto autenticaría al usuario.');
+        }
+        
+        function register() {
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                alert('Las contraseñas no coinciden');
+                return;
+            }
+            
+            // Aquí iría la lógica real de registro
+            console.log('Registrando usuario:', name, email, password);
+            alert('Función de registro simulada. En una implementación real, esto crearía una nueva cuenta.');
+            
+            // Después del registro, mostrar el formulario de login
+            showLogin();
+        }
+        
+        function sendResetLink() {
+            const email = document.getElementById('forgot-email').value;
+            
+            // Aquí iría la lógica real para enviar el enlace de recuperación
+            console.log('Enviando enlace de recuperación a:', email);
+            alert(`Se ha enviado un enlace de recuperación a ${email} (simulado).`);
+            
+            // Después de enviar el enlace, volver al login
+            showLogin();
+        }
+    </script>
+</body>
+</html>
