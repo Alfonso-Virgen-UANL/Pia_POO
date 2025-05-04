@@ -1,88 +1,70 @@
 create database Barberia;
 use Barberia;
 
-create table roles (
-    id_rol int not null auto_increment,
-    nombre varchar(50) not null,
-    privilegios varchar(100) not null,
-    primary key(id_rol)
+-- Tabla de Barberos
+CREATE TABLE barberos (
+    barbero_id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(50) NOT NULL,
+    telefono VARCHAR(15),
+    email VARCHAR(100),
+    activo BOOLEAN DEFAULT TRUE
 );
 
-create table clientes (
-    id_cliente int not null auto_increment,
-    nombre varchar(50) not null,
-    email varchar(50) not null unique,
-    telefono varchar(20) not null,
-    fecha_nacimiento date,
-    id_rol int not null,
-    fecha_registro timestamp default current_timestamp,
-    primary key(id_cliente),
-    foreign key(id_rol) references roles(id_rol)
+-- Tabla de Horarios Laborales (disponibilidad base)
+CREATE TABLE horarios_laborales (
+    horario_id INT PRIMARY KEY AUTO_INCREMENT,
+    barbero_id INT NOT NULL,
+    dia_semana TINYINT NOT NULL, -- 1=Lunes, 2=Martes, ..., 7=Domingo
+    hora_inicio TIME NOT NULL,
+    hora_fin TIME NOT NULL,
+    FOREIGN KEY (barbero_id) REFERENCES barberos(barbero_id),
+    UNIQUE KEY (barbero_id, dia_semana, hora_inicio)
 );
 
-create table categorias_servicios (
-    id_categoria int not null auto_increment,
-    nombre varchar(50) not null,
-    primary key(id_categoria)
+-- Tabla de Excepciones (vacaciones, días libres)
+CREATE TABLE excepciones_horario (
+    excepcion_id INT PRIMARY KEY AUTO_INCREMENT,
+    barbero_id INT NOT NULL,
+    fecha DATE NOT NULL,
+    todo_el_dia BOOLEAN DEFAULT TRUE,
+    hora_inicio TIME,
+    hora_fin TIME,
+    motivo VARCHAR(255),
+    FOREIGN KEY (barbero_id) REFERENCES barberos(barbero_id)
 );
 
-create table servicios (
-    id_servicio int not null auto_increment,
-    nombre varchar(50) not null,
-    descripcion varchar(100),
-    precio decimal(10,2) not null,
-    duracion_min int not null,
-    id_categoria int,
-    primary key(id_servicio),
-    foreign key(id_categoria) references categorias_servicios(id_categoria)
+-- Tabla de Clientes
+CREATE TABLE clientes (
+    cliente_id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(50) NOT NULL,
+    telefono VARCHAR(15) NOT NULL,
+    email VARCHAR(100),
+    fecha_registro DATE DEFAULT CURRENT_DATE
 );
 
-create table barberos (
-    id_barbero int not null auto_increment,
-    nombre varchar(50) not null,
-    activo boolean not null default true,
-    especialidad varchar(100),
-    primary key(id_barbero)
+-- Tabla de Servicios
+CREATE TABLE servicios (
+    servicio_id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(50) NOT NULL,
+    descripcion TEXT,
+    duracion INT NOT NULL, -- en minutos
+    precio DECIMAL(10,2) NOT NULL
 );
 
-create table horarios_barberos (
-    id_horario int not null auto_increment,
-    id_barbero int not null,
-    dia_semana tinyint not null,
-    hora_inicio time not null,
-    hora_fin time not null,
-    primary key(id_horario),
-    foreign key(id_barbero) references barberos(id_barbero)
+-- Tabla de Citas
+CREATE TABLE citas (
+    cita_id INT PRIMARY KEY AUTO_INCREMENT,
+    barbero_id INT NOT NULL,
+    cliente_id INT NOT NULL,
+    servicio_id INT NOT NULL,
+    fecha DATE NOT NULL,
+    hora_inicio TIME NOT NULL,
+    hora_fin TIME NOT NULL,
+    estado ENUM('pendiente', 'confirmada', 'completada', 'cancelada') DEFAULT 'pendiente',
+    notas TEXT,
+    fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (barbero_id) REFERENCES barberos(barbero_id),
+    FOREIGN KEY (cliente_id) REFERENCES clientes(cliente_id),
+    FOREIGN KEY (servicio_id) REFERENCES servicios(servicio_id),
+    UNIQUE KEY (barbero_id, fecha, hora_inicio)
 );
-
-create table reservas (
-    id_reserva int not null auto_increment,
-    id_cliente int not null,
-    id_servicio int not null,
-    id_barbero int not null,
-    fecha date not null,
-    hora_inicio time not null,
-    hora_fin time not null,
-    estado enum('pendiente','confirmada','cancelada','completada') default 'pendiente',
-    fecha_creacion timestamp default current_timestamp,
-    notas text,
-    primary key(id_reserva),
-    foreign key(id_cliente) references clientes(id_cliente),
-    foreign key(id_servicio) references servicios(id_servicio),
-    foreign key(id_barbero) references barberos(id_barbero)
-);
-
-create table administradores (
-    id_admin int not null auto_increment,
-    nombre_usuario varchar(50) not null unique,
-    contrasena varchar(255) not null,
-    id_rol int not null,
-    primary key(id_admin),
-    foreign key(id_rol) references roles(id_rol)
-);
-
-select * from clientes;
-select * from roles;
-select * from reserv;
-select * from servicios;
-select * from admin;
