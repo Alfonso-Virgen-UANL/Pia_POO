@@ -1,42 +1,55 @@
 <?php
+session_start();
 header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: *"); 
+require 'conxBs.php';
+require 'funciones.php';
 
-$conexion = new mysqli(
-    'localhost',     
-    'root',   
-    '123456789', 
-    'barberia'      
-);
-
-// Esto verifica la conexión
-if ($conexion->connect_error) {
-    die(json_encode(['success' => false, 'error' => 'Error de conexión: ' . $conexion->connect_error]));
+// Verificar autenticación
+if (!isset($_SESSION['user_id'])) {
+    echo json_encode(['success' => false, 'error' => 'No autenticado']);
+    exit;
 }
 
-// Este es para recibir los datos del formulario
-$fecha = $_POST['fecha'];
-$hora = $_POST['hora'];
-$servicios = implode(", ", $_POST['servicios']);
-$barbero = $_POST['barbero'];
+try {
+    $data = [
+        'fecha' => $_POST['fecha'] ?? '',
+        'hora' => $_POST['hora'] ?? '',
+        'servicios' => $_POST['servicios'] ?? [],
+        'barbero' => $_POST['barbero'] ?? ''
+    ];
 
-// Esto es nada mas para calcular el total
-$total = 0;
-foreach ($_POST['servicios'] as $precio) {
-    $total += intval($precio);
+    // Validaciones
+    if (empty($data['fecha']) || empty($data['hora']) || empty($data['barbero']) || empty($data['servicios'])) {
+        throw new Exception('Todos los campos son requeridos');
+    }
+
+    // Calcular total
+    $total = array_sum(array_map('intval', $data['servicios']));
+
+    // Insertar cita
+    $pdo->beginTransaction();
+
+    $stmt = $pdo->prepare("INSERT INTO citas (usuario_id, fecha, hora, barbero_id, total) VALUES (?, ?, ?, ?, ?)");
+    $stmt->execute([
+        $_SESSION['user_id'],
+        $data['fecha'],
+        $data['hora'],
+        $data['barbero'],
+        $total
+    ]);
+    $citaId = $pdo->lastInsertId();
+
+    // Insertar servicios
+    $stmtServicios = $pdo->prepare("INSERT INTO cita_servicios (cita_id, servicio_id) VALUES (?, ?)");
+    foreach ($data['servicios'] as $servicioId) {
+        $stmtServicios->execute([$citaId, $servicioId]);
+    }
+
+    $pdo->commit();
+    echo json_encode(['success' => true, 'message' => 'Cita agendada']);
+} catch (Exception $e) {
+    $pdo->rollBack();
+    error_log('Error en guardar_cita: ' . $e->getMessage());
+    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
 }
-
-// Y ya aca se manda la información a la base de datos
-$stmt = $conexion->prepare("INSERT INTO citas (fecha, hora, servicios, barbero, total) 
-                            VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("ssssd", $fecha, $hora, $servicios, $barbero, $total);
-
-if ($stmt->execute()) {
-    echo json_encode(['success' => true, 'message' => 'Cita guardada']);
-} else {
-    echo json_encode(['success' => false, 'error' => $stmt->error]);
-}
-
-$stmt->close();
-$conexion->close();
 ?>

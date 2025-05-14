@@ -1,100 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendar Citas</title>
+    <title>Agendar Cita - Barbería Hefesto</title>
     <link rel="stylesheet" href="CSS/citas.css">
-
 </head>
 <body>
     <header>
         <div class="menu container">
             <a href="Inicio.html" class="logo">
-                <img src="imagenes/logo.svg" alt="Logo" class="logo-img">
+                <img src="imagenes/logo.svg" alt="Logo Barbería Hefesto">
             </a>
-            <nav class="navbar" aria-label="Menú de navegación principal">
+            <nav class="navbar" aria-label="Menú principal">
                 <ul>
                     <li><a href="Inicio.html">Inicio</a></li>
                     <li><a href="Servicios.html">Servicios</a></li>
                     <li><a href="citas.html" class="active">Agendar Cita</a></li>
                 </ul>
             </nav>
-        </nav>
-        <a href="sesion-cliente.html" class="Usuario">
-            <img src="imagenes/usuraio.svg" alt="Icono de usuario" class="usuario-icono">
-        </a>
+            <div id="user-section">
+                <a href="sesion-cliente.html" class="Usuario" id="login-link">
+                    <img src="imagenes/usuraio.svg" alt="Iniciar sesión">
+                </a>
+                <span id="welcome-message" style="display:none"></span>
+            </div>
         </div>
     </header>
+
     <main class="agendar-citas">
         <div class="citas-container">
-        <h2>Agendar Cita</h2>
-        <form action="#" method="POST" class="form-citas">
-        </div>
-            <!-- Selección de fecha -->
-            <label for="fecha">Selecciona el día:</label>
-            <input type="date" id="fecha" name="fecha" required>
+            <h2>Agendar Cita</h2>
+            <form id="citaForm">
+                <label for="fecha">Selecciona el día:</label>
+                <input type="date" id="fecha" name="fecha" required>
 
-            <!-- Selección de hora -->
-            <label for="hora">Selecciona la hora:</label>
-            <input type="time" id="hora" name="hora" required>
+                <label for="hora">Selecciona la hora:</label>
+                <input type="time" id="hora" name="hora" required min="09:00" max="18:00">
 
-            <!-- Selección de servicios -->
-            <label for="servicios">Selecciona el servicio:</label>
-            <div id="servicios-container">
-                <select id="servicios" name="servicios[]" required>
-                    <option value="" selected disabled >Selecciona una opción</option>
-                    <optgroup label="Corte de Cabello">
-                        <option value="185">Corte de Caballero - $185</option>
-                        <option value="165">Corte infantil - $165</option>
-                        <option value="100">Delineado de Cabello - $100</option>
-                    </optgroup>
-                    <optgroup label="Facial">
-                        <option value="185">Limpieza facial - $185</option>
-                        <option value="165">Spa - $165</option>
-                    </optgroup>
-                    <optgroup label="Barba">
-                        <option value="120">Recorte de Barba - $120</option>
-                        <option value="85">Afeitado Clásico - $85</option>
-                        <option value="115">Recorte de bigote - $115</option>
-                        <option value="120">Tratamiento barba - $120</option>
-                        <option value="140">Limpieza barba y bigote - $140</option>
-                    </optgroup>
+                <label>Servicios:</label>
+                <div id="servicios-container">
+                    <select name="servicios[]" required>
+                        <option value="" disabled selected>Selecciona un servicio</option>
+                        <optgroup label="Cortes">
+                            <option value="185">Corte Caballero - $185</option>
+                            <option value="165">Corte Infantil - $165</option>
+                        </optgroup>
+                        <optgroup label="Barba">
+                            <option value="125">Recorte Barba - $125</option>
+                            <option value="85">Afeitado Clásico - $85</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <button type="button" id="add-servicio">+ Agregar servicio</button>
+
+                <label for="barbero">Barbero:</label>
+                <select id="barbero" name="barbero" required>
+                    <option value="" disabled selected>Selecciona tu barbero</option>
+                    <option value="1">Juan Pérez</option>
+                    <option value="2">Carlos López</option>
                 </select>
-            </div>
-            <button type="button" id="add-servicio" class="btn-agregar">Agregar otro servicio</button>
 
-            <!-- Selección de barbero -->
-            <label for="barbero">Selecciona tu barbero:</label>
-            <select id="barbero" name="barbero" required>
-                <option value="" selected disabled>Selecciona una opción</option>
-                <option value="barbero1">Juan Pérez</option>
-                <option value="barbero2">Carlos López</option>
-                <option value="barbero3">Luis Martínez</option>
-            </select>
-
-            <!-- Botón para enviar -->
-            <button type="submit" class="btn-agendar">Agendar Cita</button>
-        </form>
-
-        <!-- Agregar un contenedor para mostrar el total -->
-        <p id="total">Total: $0</p>
+                <button type="button" id="submit-cita">Confirmar Cita</button>
+                <p id="total">Total: $0</p>
+            </form>
+        </div>
     </main>
+
     <footer class="footer">
         <div class="footer-content container">
             <h3>Contactos</h3>
             <address>
                 <ul>
-                    <li>
-                        <img src="imagenes/tel1.svg" alt="Teléfono de contacto" class="contact-icon"> 81********
-                    </li>
-                    <li>
-                        <img src="imagenes/wp2.svg" alt="WhatsApp de contacto" class="contact-icon"> 81********
-                    </li>
+                    <li><img src="imagenes/tel1.svg" alt="Teléfono"> 81 1234 5678</li>
+                    <li><img src="imagenes/wp2.svg" alt="WhatsApp"> 81 8765 4321</li>
                 </ul>
             </address>
         </div>
     </footer>
-    <script src="/Frontend/JAVASCRIPT/citas.js"></script>
+
+    <script src="JS/citas.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!localStorage.getItem('userLoggedIn')) {
+                alert('Debes iniciar sesión para agendar citas');
+                window.location.href = 'sesion-cliente.html';
+            } else {
+                document.getElementById('login-link').style.display = 'none';
+                const welcomeMsg = document.getElementById('welcome-message');
+                welcomeMsg.style.display = 'inline';
+                welcomeMsg.textContent = `Bienvenido, ${localStorage.getItem('userName')}`;
+            }
+            
+            // Setear fecha mínima (hoy)
+            document.getElementById('fecha').min = new Date().toISOString().split('T')[0];
+        });
+    </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-require '../includes/functions.php';
+require '../includes/funciones.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = sanitizeInput($_POST['email']);

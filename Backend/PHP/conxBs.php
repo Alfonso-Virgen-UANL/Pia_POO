@@ -15,6 +15,7 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+    error_log('Error de conexión: ' . $e->getMessage());
+    die(json_encode(['success' => false, 'error' => 'Error de conexión con la base de datos']));
 }
 ?>

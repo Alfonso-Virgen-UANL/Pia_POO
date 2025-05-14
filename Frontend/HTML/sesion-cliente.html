@@ -3,39 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de sesion</title>
+    <title>Iniciar Sesión - Barbería Hefesto</title>
     <link rel="stylesheet" href="CSS/sesion-cliente.css">
 </head>
 <body>
     <header>
         <div class="menu container">
             <a href="Inicio.html" class="logo">
-                <img src="imagenes/logo.svg" alt="Logo" class="logo-img">
+                <img src="imagenes/logo.svg" alt="Logo Barbería Hefesto">
             </a>
-            <nav class="navbar" aria-label="Menú de navegación principal">
+            <nav class="navbar" aria-label="Menú principal">
                 <ul>
                     <li><a href="Inicio.html">Inicio</a></li>
                     <li><a href="Servicios.html">Servicios</a></li>
-                    <li><a href="citas.html" class="active">Agendar Cita</a></li>
+                    <li><a href="citas.html">Agendar Cita</a></li>
                 </ul>
             </nav>
-        </nav>
-        <a href="#" class="Usuario" target="_blank">
-            <img src="imagenes/usuraio.svg" alt="Icono de usuario" class="usuario-icono">
-        </a>
         </div>
     </header>
+
     <main class="container1">
-        <!-- Formulario de Login -->
         <div id="login-form" class="form-container active">
-            <form class="form">
+            <form id="loginForm">
                 <h2>Iniciar Sesión</h2>
-                
                 <div class="input-group">
                     <label for="login-email">Correo Electrónico</label>
                     <input type="email" id="login-email" required>
                 </div>
-                
                 <div class="input-group">
                     <label for="login-password">Contraseña</label>
                     <div class="password-container">
@@ -43,34 +37,27 @@
                         <span class="toggle-password" onclick="togglePassword('login-password')">Mostrar</span>
                     </div>
                 </div>
-                
                 <div class="forgot-password">
-                    <a href="recuperarcontra.html" onclick="showForgotPassword()">¿Olvidaste tu contraseña?</a>
+                    <a href="recuperarcontra.html">¿Olvidaste tu contraseña?</a>
                 </div>
-                
-                <button type="button" onclick="login()">Iniciar Sesión</button>
-                
+                <button type="button" onclick="handleLogin()">Iniciar Sesión</button>
                 <div class="switch-form">
                     ¿No tienes una cuenta? <a href="#" onclick="showRegister()">Regístrate</a>
                 </div>
             </form>
         </div>
-        
-        <!-- Formulario de Registro -->
+
         <div id="register-form" class="form-container hidden">
-            <form class="form">
+            <form id="registerForm">
                 <h2>Registro</h2>
-                
                 <div class="input-group">
                     <label for="register-name">Nombre Completo</label>
                     <input type="text" id="register-name" required>
                 </div>
-                
                 <div class="input-group">
                     <label for="register-email">Correo Electrónico</label>
                     <input type="email" id="register-email" required>
                 </div>
-                
                 <div class="input-group">
                     <label for="register-password">Contraseña</label>
                     <div class="password-container">
@@ -78,7 +65,6 @@
                         <span class="toggle-password" onclick="togglePassword('register-password')">Mostrar</span>
                     </div>
                 </div>
-                
                 <div class="input-group">
                     <label for="register-confirm-password">Confirmar Contraseña</label>
                     <div class="password-container">
@@ -86,48 +72,26 @@
                         <span class="toggle-password" onclick="togglePassword('register-confirm-password')">Mostrar</span>
                     </div>
                 </div>
-                
-                <button type="button" onclick="register()">Registrarse</button>
-                
+                <button type="button" onclick="handleRegister()">Registrarse</button>
                 <div class="switch-form">
                     ¿Ya tienes una cuenta? <a href="#" onclick="showLogin()">Inicia Sesión</a>
                 </div>
             </form>
         </div>
-        
-        <!-- Formulario de Recuperación de Contraseña -->
-        <div id="forgot-password-form" class="form-container hidden">
-            <form class="form">
-                <h2>Recuperar Contraseña</h2>
-                
-                <div class="input-group">
-                    <label for="forgot-email">Correo Electrónico</label>
-                    <input type="email" id="forgot-email" required>
-                </div>
-                
-                <button type="button" onclick="sendResetLink()">Enviar Enlace de Recuperación</button>
-                
-                <div class="switch-form">
-                    <a href="#" onclick="showLogin()">Volver al Inicio de Sesión</a>
-                </div>
-            </form>
-        </div>
     </main>
+
     <footer class="footer">
         <div class="footer-content container">
             <h3>Contactos</h3>
             <address>
                 <ul>
-                    <li>
-                        <img src="imagenes/tel1.svg" alt="Teléfono de contacto" class="contact-icon"> 81********
-                    </li>
-                    <li>
-                        <img src="imagenes/wp2.svg" alt="WhatsApp de contacto" class="contact-icon"> 81********
-                    </li>
+                    <li><img src="imagenes/tel1.svg" alt="Teléfono"> 81 1234 5678</li>
+                    <li><img src="imagenes/wp2.svg" alt="WhatsApp"> 81 8765 4321</li>
                 </ul>
             </address>
         </div>
     </footer>
-    <script src="/Frontend/JAVASCRIPT/sesion-cliente.js"></script>
+
+    <script src="JS/sesion-cliente.js"></script>
 </body>
 </html>

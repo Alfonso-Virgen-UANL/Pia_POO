@@ -1,90 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios</title>
+    <title>Servicios - Barbería Hefesto</title>
     <link rel="stylesheet" href="CSS/servicios.css">
 </head>
 <body>
     <header>
         <div class="menu container">
             <a href="Inicio.html" class="logo">
-              <img src="imagenes/logo.svg" alt="logo" class="logo-img">
+                <img src="imagenes/logo.svg" alt="Logo Barbería Hefesto">
             </a>
-            <nav class="navbar" aria-label="Menú de navegación principal"> <!-- Menú accesible -->
+            <nav class="navbar" aria-label="Menú principal">
                 <ul>
                     <li><a href="Inicio.html">Inicio</a></li>
-                    <li><a href="Servicios.html" class="active" >Servicios</a></li>
+                    <li><a href="Servicios.html" class="active">Servicios</a></li>
                     <li><a href="citas.html">Agendar Cita</a></li>
                 </ul>
             </nav>
-            <a href="sesion-cliente.html" class="Usuario"> 
-                <img src="imagenes/usuraio.svg" alt="Icono de usuario" class="usuario-icono"></a>
+            <div id="user-section">
+                <a href="sesion-cliente.html" class="Usuario" id="login-link">
+                    <img src="imagenes/usuraio.svg" alt="Iniciar sesión">
+                </a>
+                <span id="welcome-message" style="display:none"></span>
+            </div>
+        </div>
     </header>
-    <!-- Contenido Principal -->
-    <main class="servicios"> 
-        <div class="servicios-content container"> 
+
+    <main class="servicios">
+        <div class="servicios-content container">
             <h1>SERVICIOS</h1>
         </div>
+        
         <section class="servicios1-content">
-          <!-- Sección Cortes -->
-          <article class="servicio-cortes">
-            <h2>Cortes</h2>
-            <div class="servicio-content">
-              <ul>
-                <li>Corte de Caballero - 185$</li>
-                <li>Corte infantil - 165$</li>
-                <li>Delineado de Cabello - 100$</li>
-              </ul>
-              
-            </div>
-
-          </article>
+            <article class="servicio-cortes">
+                <h2>Cortes</h2>
+                <div class="servicio-content">
+                    <ul>
+                        <li>Corte de Caballero - 185$</li>
+                        <li>Corte infantil - 165$</li>
+                        <li>Delineado de Cabello - 100$</li>
+                    </ul>
+                </div>
+            </article>
             <div class="corte-img" aria-hidden="true"></div>
-          <!-- Sección Facial -->
-          <article class="servicio-facial">
-            <h2>Facial</h2>
-            <div class="servicio-content">
-              <ul>
-                <li>Limpieza facial - 185$</li>
-                <li>Spa - 165$</li>
-              </ul>
-              
-            </div>
-          </article>
-          <div class="facial-img" aria-hidden="true"></div>
-          <!-- Sección Barba -->
-          <article class="servicio-barba">
-            <h2>Barba</h2>
-            <div class="servicio-content">
-              <ul>
-                <li>Recorte de Barba - 125$</li>
-                <li>Afeitado Clásico - 85$</li>
-                <li>Recorte de bigote - 115$</li>
-                <li>Tratamiento - 120$</li>
-              </ul>
-              
-            </div>
-          </article>
-          <div class="barba-img" aria-hidden="true"></div>
+
+            <article class="servicio-facial">
+                <h2>Facial</h2>
+                <div class="servicio-content">
+                    <ul>
+                        <li>Limpieza facial - 185$</li>
+                        <li>Spa - 165$</li>
+                    </ul>
+                </div>
+            </article>
+            <div class="facial-img" aria-hidden="true"></div>
+
+            <article class="servicio-barba">
+                <h2>Barba</h2>
+                <div class="servicio-content">
+                    <ul>
+                        <li>Recorte de Barba - 125$</li>
+                        <li>Afeitado Clásico - 85$</li>
+                        <li>Recorte de bigote - 115$</li>
+                        <li>Tratamiento - 120$</li>
+                    </ul>
+                </div>
+            </article>
+            <div class="barba-img" aria-hidden="true"></div>
         </section>
     </main>
-    <!-- Footer -->
-    
+
     <footer class="footer">
         <div class="footer-content container">
+            <h3>Contactos</h3>
             <address>
-                <h3>Contactos</h3>
                 <ul>
-                    <li><img src="imagenes/tel1.svg" alt="Teléfono" class="contact-icon"> 81********</li>
-                    <li><img src="imagenes/wp2.svg" alt="WhatsApp" class="contact-icon"> 81********</li>
+                    <li><img src="imagenes/tel1.svg" alt="Teléfono"> 81 1234 5678</li>
+                    <li><img src="imagenes/wp2.svg" alt="WhatsApp"> 81 8765 4321</li>
                 </ul>
             </address>
-            <div class="link">
-                <a href="citas.html">Agendar Cita</a>
-            </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('userLoggedIn')) {
+                document.getElementById('login-link').style.display = 'none';
+                const welcomeMsg = document.getElementById('welcome-message');
+                welcomeMsg.style.display = 'inline';
+                welcomeMsg.textContent = `Bienvenido, ${localStorage.getItem('userName')}`;
+            }
+        });
+    </script>
 </body>
 </html>

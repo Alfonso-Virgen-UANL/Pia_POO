@@ -1,92 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Barbería Hefesto - Servicios de cortes de cabello, barba y más.">
-    <meta name="keywords" content="barbería, cortes de cabello, barba, servicios de barbería">
-    <title>Citas Barbería Hefesto</title>
+    <meta name="description" content="Barbería Hefesto - Servicios profesionales">
+    <title>Barbería Hefesto</title>
     <link rel="stylesheet" href="CSS/Front-end CSS.css">
 </head>
 <body>
     <header>
         <div class="menu container">
             <a href="Inicio.html" class="logo">
-                <img src="imagenes/logo.svg" alt="logo" class="logo-img">
+                <img src="imagenes/logo.svg" alt="Logo Barbería Hefesto">
             </a>
-            <nav class="navbar" aria-label="Menú de navegación principal"> <!-- Menú accesible -->
+            <nav class="navbar" aria-label="Menú principal">
                 <ul>
                     <li><a href="Inicio.html" class="active">Inicio</a></li>
                     <li><a href="Servicios.html">Servicios</a></li>
                     <li><a href="citas.html">Agendar Cita</a></li>
                 </ul>
             </nav>
-            <a href="sesion-cliente.html" class="Usuario">
-                <img src="imagenes/usuraio.svg" alt="Icono de usuario" class="usuario-icono">
-            </a>
+            <div id="user-section">
+                <a href="sesion-cliente.html" class="Usuario" id="login-link">
+                    <img src="imagenes/usuraio.svg" alt="Iniciar sesión">
+                </a>
+                <span id="welcome-message" style="display:none"></span>
+            </div>
         </div>
-        <div class="header-content container"> <!-- Contenido del Header -->
+
+        <div class="header-content container">
             <h1>Barbería Hefesto</h1>
+            <p>Estilo y precisión para caballeros</p>
         </div>
+    </header>
+
+    <main class="inicio">
         <section class="cortes-conten">
             <article class="corte">
-                <img src="imagenes/cortecaballero.jpg" alt="Corte-Caballero">
+                <img src="imagenes/cortecaballero.jpg" alt="Corte Caballero">
                 <h2>Corte Caballero</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> 
-                    Voluptatibus expedita non dolores nam dolorum sapiente tempora et <br>
-                    incidunt amet? Unde accusantium labore possimus maxime 
-                    culpa rerum officiis soluta molestias esse.</p>
+                <p>Servicio premium con acabado perfecto</p>
             </article>
             <article class="corte">
-                <img src="imagenes/corteinfantil.jpg" alt="Corte-Infantil">
+                <img src="imagenes/corteinfantil.jpg" alt="Corte Infantil">
                 <h2>Corte Infantil</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> 
-                    Voluptatibus expedita non dolores nam dolorum sapiente tempora et <br>
-                    incidunt amet? Unde accusantium labore possimus maxime 
-                    culpa rerum officiis soluta molestias esse.</p>
+                <p>Experiencia divertida para los más pequeños</p>
             </article>
             <article class="corte">
-                <img src="imagenes/cortebarba.jpg" alt="Corte-Barba">
-                <h2>Corte de Barba</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> 
-                    Voluptatibus expedita non dolores nam dolorum sapiente tempora et <br>
-                    incidunt amet? Unde accusantium labore possimus maxime 
-                    culpa rerum officiis soluta molestias esse</p>
+                <img src="imagenes/cortebarba.jpg" alt="Corte de Barba">
+                <h2>Barba</h2>
+                <p>Diseño profesional con acabado impecable</p>
             </article>
         </section>
-    </header>
-    <!-- Contenido Principal -->
-    <main class="inicio">
+
         <section class="quienes-somos-content">
             <div class="quienes-somos-1">
                 <h2>¿Quiénes Somos?</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus expedita non dolores nam dolorum sapiente tempora et incidunt amet?</p>
-                <p>Unde accusantium labore possimus maxime culpa rerum officiis soluta molestias esse</p>
+                <p>Barbería tradicional con más de 15 años de experiencia</p>
             </div>
-            <div class="quienes-somos-2" aria-hidden="true"></div> <!-- Marca como decorativa si no es contenido relevante -->
+            <div class="quienes-somos-2" aria-hidden="true"></div>
         </section>
     </main>
-    <!-- Footer -->
-    
+
     <footer class="footer">
-        
         <div class="footer-content container">
             <h3>Contactos</h3>
             <address>
                 <ul>
-                    <li>
-                        <img src="imagenes/tel1.svg" alt="Teléfono de contacto" class="contact-icon"> 81********
-                    </li>
-                    <li>
-                        <img src="imagenes/wp2.svg" alt="WhatsApp de contacto" class="contact-icon" >81********
-                    </li>
-                    <li>
-                        <a href="citas.html">Agendar Cita</a>
-                    </li>
+                    <li><img src="imagenes/tel1.svg" alt="Teléfono"> 81 1234 5678</li>
+                    <li><img src="imagenes/wp2.svg" alt="WhatsApp"> 81 8765 4321</li>
                 </ul>
             </address>
-
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('userLoggedIn')) {
+                document.getElementById('login-link').style.display = 'none';
+                const welcomeMsg = document.getElementById('welcome-message');
+                welcomeMsg.style.display = 'inline';
+                welcomeMsg.textContent = `Bienvenido, ${localStorage.getItem('userName')}`;
+            }
+        });
+    </script>
 </body>
 </html>

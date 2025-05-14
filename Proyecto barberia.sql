@@ -1,4 +1,3 @@
-create database Barberia;
 use Barberia;
 
 -- Tabla de Barberos
