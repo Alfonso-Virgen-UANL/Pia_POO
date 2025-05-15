@@ -13,9 +13,9 @@ try {
     echo "¡Conexión exitosa!";
     
     // Verifica si la tabla usuarios existe
-    $stmt = $pdo->query("SHOW TABLES LIKE 'usuarios'");
+    $stmt = $pdo->query("SHOW TABLES LIKE 'clientes'");
     if ($stmt->rowCount() > 0) {
-        echo "<br>La tabla 'usuarios' existe";
+        echo "<br>La tabla 'clientes' existe";
     } else {
         echo "<br>Advertencia: La tabla 'usuarios' NO existe";
     }
