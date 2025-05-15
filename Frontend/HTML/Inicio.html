@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Barbería Hefesto - Servicios profesionales">
-    <title>Barbería Hefesto</title>
-    <link rel="stylesheet" href="../CSS/Front-end CSS.css">
+    <title>Iniciar Sesión - Barbería Hefesto</title>
+    <link rel="stylesheet" href="../CSS/sesion-cliente.css">
 </head>
 <body>
     <header>
         <div class="menu container">
             <a href="Inicio.html" class="logo">
-                <img src="imagenes/logo.svg" alt="Logo Barbería Hefesto" class="logo-img">
+                <img src="imagenes/logo.svg" alt="Logo" class="logo-img">
             </a>
-            <nav class="navbar" aria-label="Menú principal">
+            <nav class="navbar" aria-label="Menú de navegación principal">
                 <ul>
-                    <li><a href="Inicio.html" class="active">Inicio</a></li>
+                    <li><a href="Inicio.html">Inicio</a></li>
                     <li><a href="Servicios.html">Servicios</a></li>
-                    <li><a href="citas.html">Agendar Cita</a></li>
+                    <li><a href="citas.html" >Agendar Cita</a></li>
                     <li><a href="perfil_usario.html">Perfil</a></li>
                 </ul>
             </nav>
+        </nav>
             <div id="user-section">
                 <a href="sesion-cliente.html" class="Usuario" id="login-link">
                     <img src="imagenes/usuraio.svg" alt="Iniciar sesión" class="usuario-icono">
@@ -28,47 +28,68 @@
                 <span id="welcome-message" style="display:none"></span>
             </div>
         </div>
-
-        <div class="header-content container">
-            <h1>Barbería Hefesto</h1>
-            <p>Estilo y precisión para caballeros</p>
-        </div>
     </header>
 
-    <main class="inicio">
-        <section class="cortes-conten">
-            <article class="corte">
-                <img src="imagenes/cortecaballero.jpg" alt="Corte Caballero">
-                <h2>Corte Caballero</h2>
-                <p>Servicio premium con acabado perfecto</p>
-            </article>
-            <article class="corte">
-                <img src="imagenes/corteinfantil.jpg" alt="Corte Infantil">
-                <h2>Corte Infantil</h2>
-                <p>Experiencia divertida para los más pequeños</p>
-            </article>
-            <article class="corte">
-                <img src="imagenes/cortebarba.jpg" alt="Corte de Barba">
-                <h2>Barba</h2>
-                <p>Diseño profesional con acabado impecable</p>
-            </article>
-        </section>
+    <main class="container1">
+        <div id="login-form" class="form-container active">
+            <form id="loginForm">
+                <h2>Iniciar Sesión</h2>
+                <div class="input-group">
+                    <label for="login-email">Correo Electrónico</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="login-password">Contraseña</label>
+                    <div class="password-container">
+                        <input type="password" id="login-password" name="password" required>
+                        <span class="toggle-password" onclick="togglePassword('login-password')">Mostrar</span>
+                    </div>
+                </div>
+                <div class="forgot-password">
+                    <a href="recuperarcontra.html">¿Olvidaste tu contraseña?</a>
+                </div>
+                <button type="submit">Iniciar Sesión</button>
+        <div class="switch-form">
+                    ¿No tienes una cuenta? <a href="#" onclick="showRegister()">Regístrate</a>
+                </div>
+            </form>
+        </div>
 
-        <section class="quienes-somos-content">
-            <div class="quienes-somos-1">
-                <h2>¿Quiénes Somos?</h2>
-                <p>Todo comenzó con el dueño que tenia de apodo Hefesto, un barbero de la vieja escuela que, con sus tijeras 
-                    afiladas y su navaja de acero, convirtió un pequeño local en un refugio para 
-                    hombres que buscaban más que un simple corte. Con los años, su legado pasó a 
-                    manos de jóvenes aprendices que, bajo su enseñanza, dominaron el arte del barbering 
-                    clásico y moderno.</p>
-                    <p>Hoy despues de 30 años, la Barbería Hefesto es un templo donde convergen tradición y tendencia. 
-                        Cada silla, cada espejo y cada herramienta tiene una historia. Nuestros 
-                        barberos no son solo estilistas, son artesanos del estilo, capaces de interpretar 
-                        los deseos de cada cliente y convertirlos en realidad.</p>
-            </div>
-            <div class="quienes-somos-2" aria-hidden="true"></div>
-        </section>
+        <div id="register-form" class="form-container hidden">
+            <form id="registerForm" action="/Backend/registro.php" method="post">
+                <h2>Registro</h2>
+                <div class="input-group">
+                    <label for="register-name">Nombre Completo</label>
+                    <input type="text" id="register-name" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-phone">Número Celular</label>
+                    <input type="tel" id="register-phone" name="phone" required placeholder="Ej: 8112345678">
+                </div>
+                <div class="input-group">
+                    <label for="register-email">Correo Electrónico</label>
+                    <input type="email" id="register-email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-password">Contraseña</label>
+                    <div class="password-container">
+                        <input type="password" id="register-password" name="password" required>
+                        <span class="toggle-password" onclick="togglePassword('register-password')">Mostrar</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="register-confirm-password">Confirmar Contraseña</label>
+                    <div class="password-container">
+                        <input type="password" id="register-confirm-password" name="confirmPassword" required>
+                        <span class="toggle-password" onclick="togglePassword('register-confirm-password')">Mostrar</span>
+                    </div>
+                </div>
+                <button type="submit">Registrarse</button>
+                <div class="switch-form">
+                    ¿Ya tienes una cuenta? <a href="#" onclick="showLogin()">Inicia Sesión</a>
+                </div>
+            </form>
+        </div>
     </main>
 
     <footer class="footer">
@@ -83,15 +104,6 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.getItem('userLoggedIn')) {
-                document.getElementById('login-link').style.display = 'none';
-                const welcomeMsg = document.getElementById('welcome-message');
-                welcomeMsg.style.display = 'inline';
-                welcomeMsg.textContent = `Bienvenido, ${localStorage.getItem('userName')}`;
-            }
-        });
-    </script>
+    <script src="../JAVASCRIPT/sesion-cliente.js"></script>
 </body>
 </html>

@@ -30,48 +30,50 @@ document.addEventListener('DOMContentLoaded', function() {
     showLogin(); // Mostrar login por defecto
 });
 
-// Configuración común para fetch
-const fetchConfig = {
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    }
-};
-
-// Manejo de login (actualizado)
+// Manejo de login (corregido para usar FormData)
 document.getElementById('loginForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    const formData = {
-        email: document.getElementById('login-email').value,
-        password: document.getElementById('login-password').value
-    };
+    // Crear FormData con los datos del formulario
+    const formData = new FormData();
+    formData.append('email', document.getElementById('login-email').value);
+    formData.append('password', document.getElementById('login-password').value);
 
     try {
-        const response = await fetch('/Backend/login.php', {
+        const response = await fetch('/barberia/Pia_POO/Backend/login.php', {
             method: 'POST',
-            ...fetchConfig,
-            body: JSON.stringify(formData)
+            body: formData
         });
-        
-        const data = await response.json();
-        console.log('Respuesta login:', data);
 
-        if (!response.ok) throw new Error(data.error || 'Error en la solicitud');
+        // Verificar si la respuesta fue exitosa antes de intentar parsear JSON
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+        }
 
-        if (data.success) {
-            localStorage.setItem('authToken', data.token || '');
-            window.location.href = data.redirect || 'Inicio.html';
+        let data;
+        try {
+            data = await response.json();
+            console.log('Respuesta login:', data);
+        } catch (parseError) {
+            console.error('Error al parsear JSON:', parseError);
+            throw new Error('La respuesta del servidor no es un JSON válido');
+        }
+
+        if (data && data.success) {
+            // Mostrar alerta de éxito con window.alert
+            window.alert('¡Inicio de sesión exitoso!');
+            // Redirigir al usuario
+            window.location.href = data.redirect;
         } else {
-            throw new Error(data.error || 'Credenciales incorrectas');
+            window.alert(data?.error || 'Error al iniciar sesión');
         }
     } catch (error) {
         console.error('Error en login:', error);
-        showError(error.message);
+        window.alert(`Error al conectar con el servidor: ${error.message}`);
     }
 });
 
-// Manejo de registro (completamente actualizado)
+// Manejo de registro (corregido para usar FormData)
 document.getElementById('registerForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
@@ -80,66 +82,61 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     
     // Validaciones del cliente
     if (password.length < 8) {
-        showError('La contraseña debe tener al menos 8 caracteres');
+        window.alert('La contraseña debe tener al menos 8 caracteres');
         return;
     }
     
     if (password !== confirmPassword) {
-        showError('Las contraseñas no coinciden');
+        window.alert('Las contraseñas no coinciden');
+        return;
+    }
+    
+    // Validar número de teléfono (solo números y 10 dígitos para México)
+    const phone = document.getElementById('register-phone').value;
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(phone)) {
+        window.alert('El número celular debe tener 10 dígitos sin espacios ni guiones');
         return;
     }
 
-    const formData = {
-        name: document.getElementById('register-name').value,
-        email: document.getElementById('register-email').value,
-        password: password,
-        confirmPassword: confirmPassword
-    };
+    // Crear FormData con los datos del formulario
+    const formData = new FormData();
+    formData.append('name', document.getElementById('register-name').value);
+    formData.append('phone', document.getElementById('register-phone').value);
+    formData.append('email', document.getElementById('register-email').value);
+    formData.append('password', password);
+    formData.append('confirmPassword', confirmPassword);
 
     try {
-        const response = await fetch('/Backend/registro.php', {
+        const response = await fetch('/barberia/Pia_POO/Backend/registro.php', {
             method: 'POST',
-            ...fetchConfig,
-            body: JSON.stringify(formData)
+            body: formData
         });
 
-        const data = await response.json();
-        console.log('Respuesta registro:', data);
+        // Verificar si la respuesta fue exitosa antes de intentar parsear JSON
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+        }
 
-        if (!response.ok) throw new Error(data.error || 'Error en el registro');
+        let data;
+        try {
+            data = await response.json();
+            console.log('Respuesta registro:', data);
+        } catch (parseError) {
+            console.error('Error al parsear JSON:', parseError);
+            throw new Error('La respuesta del servidor no es un JSON válido');
+        }
 
-        if (data.success) {
-            showMessage('Registro exitoso. Por favor inicia sesión.');
+        if (data && data.success) {
+            // Mostrar alerta de éxito con window.alert
+            window.alert('¡Registro exitoso! Ahora puedes iniciar sesión con tus credenciales.');
+            // Cambiar al formulario de login
             showLogin();
         } else {
-            throw new Error(data.error || 'Error en el registro');
+            window.alert(data?.error || 'Error en el registro');
         }
     } catch (error) {
         console.error('Error en registro:', error);
-        showError(error.message);
+        window.alert(`Error al conectar con el servidor: ${error.message}`);
     }
 });
-
-// Funciones auxiliares mejoradas
-function showError(message) {
-    const errorElement = document.getElementById('error-message') || createMessageElement('error');
-    errorElement.textContent = message;
-    errorElement.style.display = 'block';
-    setTimeout(() => errorElement.style.display = 'none', 5000);
-}
-
-function showMessage(message) {
-    const msgElement = document.getElementById('success-message') || createMessageElement('success');
-    msgElement.textContent = message;
-    msgElement.style.display = 'block';
-    setTimeout(() => msgElement.style.display = 'none', 5000);
-}
-
-function createMessageElement(type) {
-    const element = document.createElement('div');
-    element.id = `${type}-message`;
-    element.className = `alert alert-${type}`;
-    element.style.display = 'none';
-    document.body.prepend(element);
-    return element;
-}
