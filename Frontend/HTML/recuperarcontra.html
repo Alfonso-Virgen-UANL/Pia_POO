@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Contraseña - Barbería Hefesto</title>
-    <link rel="stylesheet" href="../CSS/recuperarcontra.css">
+    <link rel="stylesheet" href="CSS/recuperarcontra.css">
 </head>
 <body>
     <header>
@@ -62,7 +62,7 @@
         async function submitRecovery() {
             const email = document.getElementById('email').value;
             try {
-                const response = await fetch('backend/endpoints/recupDeCont.php', {
+                const response = await fetch('recupDeCont.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
