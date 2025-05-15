@@ -11,7 +11,7 @@ body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
   color: #333;
-  background-image: url(../imagenes/vintageF.png);
+  background-image: url(../HTML/imagenes/vintageF.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -193,15 +193,15 @@ text-decoration: underline overline;
 }
 
 .corte-img {
-  background-image: url('../imagenes/corte.svg');
+  background-image: url('../HTML/imagenes/corte.svg');
 }
 
 .facial-img {
-  background-image: url('../imagenes/facial.svg');
+  background-image: url('../HTML/imagenes/facial.svg');
 }
 
 .barba-img {
-  background-image: url('../imagenes/barba.svg');
+  background-image: url('../HTML/imagenes/barba.svg');
 }
 
 /* Footer */
