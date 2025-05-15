@@ -1,32 +1,118 @@
 body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-        }
+font-family: 'Arial', sans-serif;
+background-color: #f5f5f5;
+margin: 0;
+padding: 20px;
+color: #333;
+  background-image: url(../HTML/imagenes/vintageF.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: inherit; /* Usa la misma imagen de fondo */
+  background-position: inherit;
+  background-repeat: inherit;
+  background-size: inherit;
+  filter: blur(10px); /* Ajusta el nivel de desenfoque */
+  z-index: -1; /* Asegura que quede detrás del contenido */
+}
         
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-        
+.container {
+max-width: 800px;
+margin: 0 auto;
+background-color: rgba(255, 255, 255, 0);
+border-radius: 10px;
+box-shadow: 0 0 15px rgba(0, 0, 0, 0.562);
+overflow: hidden;
+}
+.header-content.container {
+text-align: center;
+padding: 20px;
+}
+header {
+ 
+  color: #333;
+  padding: 25px 0;
+  
+}
+.header-content h1 {
+display: inline-block;
+padding: 10px 300px; /* Ajusta el espacio interno */
+font-family: 'Cinzel', serif;
+font-size: 3.5rem; /* Tamaño del título */
+text-decoration: underline overline; 
+}
+
+.menu.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 90px;
+  width: 100px;
+}
+
+
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar a {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.navbar a.active {
+  font-weight: bold;
+  border-bottom: 3px solid #075f07;
+}
+
+.navbar a:hover {
+  color: #ce2929;
+}
+.usuario-icono {
+  width: 50px;
+  height: 50px;
+}
         .header {
-            background-color: #1a1a1a;
-            color: white;
+            background-color: #334433;
+            color: rgb(20, 20, 20);
             padding: 20px;
             text-align: center;
         }
+
         
         .profile-section {
             display: flex;
             padding: 30px;
             align-items: center;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #ffffff18;
         }
         
         .profile-pic {
@@ -34,7 +120,7 @@ body {
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid #f5f5f5;
+            border: 5px solid #10421b46;
             margin-right: 30px;
         }
         
@@ -60,9 +146,10 @@ body {
         }
         
         .detail-card {
-            background-color: #f9f9f9;
+            background-color: #46444425;
             padding: 15px;
             border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.562);
         }
         
         .detail-card h3 {
@@ -80,13 +167,13 @@ body {
         .detail-item strong {
             display: inline-block;
             width: 120px;
-            color: #555;
+            color: #413f3f;
         }
         
         .footer {
             text-align: center;
             padding: 20px;
-            background-color: #f5f5f5;
+            background-color: #f5f5f502;
             color: #666;
             font-size: 14px;
         }
