@@ -48,7 +48,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     };
 
     try {
-        const response = await fetch('inicioDeSesion.php', {
+        const response = await fetch('../Backend/login.php', {
             method: 'POST',
             ...fetchConfig,
             body: JSON.stringify(formData)
@@ -97,7 +97,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     };
 
     try {
-        const response = await fetch('registro.php', {
+        const response = await fetch('../Backend/registro.php', {
             method: 'POST',
             ...fetchConfig,
             body: JSON.stringify(formData)

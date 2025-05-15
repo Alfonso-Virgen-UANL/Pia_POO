@@ -79,7 +79,7 @@ document.querySelector('.form-citas').addEventListener('submit', async function(
         submitBtn.disabled = true;
         submitBtn.textContent = 'Enviando...';
 
-        const response = await fetch('guardar_cita.php', {
+        const response = await fetch('/Backend/guardar_cita.php', {
             method: 'POST',
             body: formData
         });
