@@ -28,6 +28,24 @@ function showRegister() {
 // Inicialización (simplificada)
 document.addEventListener('DOMContentLoaded', function() {
     showLogin(); // Mostrar login por defecto
+    
+    // Verificar si el usuario ya inició sesión
+    if (localStorage.getItem('userLoggedIn')) {
+        const userName = localStorage.getItem('userName');
+        if (userName) {
+            // Actualizar la interfaz para mostrar que el usuario está conectado
+            const loginLink = document.getElementById('login-link');
+            if (loginLink) {
+                loginLink.style.display = 'none';
+            }
+            
+            const welcomeMessage = document.getElementById('welcome-message');
+            if (welcomeMessage) {
+                welcomeMessage.style.display = 'inline';
+                welcomeMessage.textContent = `Bienvenido, ${userName}`;
+            }
+        }
+    }
 });
 
 // Manejo de login (corregido para usar FormData)
@@ -60,6 +78,11 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         }
 
         if (data && data.success) {
+            // Guardar información en localStorage para persistencia entre páginas
+            localStorage.setItem('userLoggedIn', 'true');
+            localStorage.setItem('userName', data.userName || 'Usuario');
+            localStorage.setItem('userId', data.userId || '');
+            
             // Mostrar alerta de éxito con window.alert
             window.alert('¡Inicio de sesión exitoso!');
             // Redirigir al usuario

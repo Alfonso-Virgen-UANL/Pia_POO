@@ -20,7 +20,6 @@
                     <li><a href="perfil_usario.html">Perfil</a></li>
                 </ul>
             </nav>
-        </nav>
             <div id="user-section">
                 <a href="sesion-cliente.html" class="Usuario" id="login-link">
                     <img src="imagenes/usuraio.svg" alt="Iniciar sesión" class="usuario-icono">
@@ -42,17 +41,19 @@
 
                 <label>Servicios:</label>
                 <div id="servicios-container">
-                    <select name="servicios[]" required>
-                        <option value="" disabled selected>Selecciona un servicio</option>
-                        <optgroup label="Cortes">
-                            <option value="185">Corte Caballero - $185</option>
-                            <option value="165">Corte Infantil - $165</option>
-                        </optgroup>
-                        <optgroup label="Barba">
-                            <option value="125">Recorte Barba - $125</option>
-                            <option value="85">Afeitado Clásico - $85</option>
-                        </optgroup>
-                    </select>
+                    <div class="servicio-grupo">
+                        <select name="servicios[]" required>
+                            <option value="" disabled selected>Selecciona un servicio</option>
+                            <optgroup label="Cortes">
+                                <option value="185">Corte Caballero - $185</option>
+                                <option value="165">Corte Infantil - $165</option>
+                            </optgroup>
+                            <optgroup label="Barba">
+                                <option value="125">Recorte Barba - $125</option>
+                                <option value="85">Afeitado Clásico - $85</option>
+                            </optgroup>
+                        </select>
+                    </div>
                 </div>
                 <button type="button" id="add-servicio">+ Agregar servicio</button>
 
@@ -63,8 +64,8 @@
                     <option value="2">Carlos López</option>
                 </select>
 
-                <button type="button" id="submit-cita">Confirmar Cita</button>
                 <p id="total">Total: $0</p>
+                <button type="button" id="submit-cita">Confirmar Cita</button>
             </form>
         </div>
     </main>
@@ -82,21 +83,5 @@
     </footer>
 
     <script src="../JAVASCRIPT/citas.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (!localStorage.getItem('userLoggedIn')) {
-                alert('Debes iniciar sesión para agendar citas');
-                window.location.href = 'sesion-cliente.html';
-            } else {
-                document.getElementById('login-link').style.display = 'none';
-                const welcomeMsg = document.getElementById('welcome-message');
-                welcomeMsg.style.display = 'inline';
-                welcomeMsg.textContent = `Bienvenido, ${localStorage.getItem('userName')}`;
-            }
-            
-            // Setear fecha mínima (hoy)
-            document.getElementById('fecha').min = new Date().toISOString().split('T')[0];
-        });
-    </script>
 </body>
 </html>

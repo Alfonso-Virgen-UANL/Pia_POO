@@ -52,7 +52,8 @@ try {
         $response = [
             'success' => true, 
             'redirect' => 'Inicio.html',
-            'userName' => $user['nombre']
+            'userName' => $user['nombre'],
+            'userId' => $user['cliente_id'] // Agregar el ID del usuario
         ];
     } else {
         throw new Exception('Credenciales incorrectas');
