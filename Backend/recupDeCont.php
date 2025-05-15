@@ -1,5 +1,6 @@
 <?php
-require '../includes/functions.php';
+require 'funciones.php';
+require 'conxBs.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = sanitizeInput($_POST['email']);

@@ -1,5 +1,6 @@
 <?php
-require '../includes/functions.php';
+require 'funciones.php';
+require 'conxBs.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = sanitizeInput($_POST['name']);
@@ -20,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Para registrar al usuario
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-    $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)");
+    $stmt = $pdo->prepare("INSERT INTO clientes (nombre, email, password) VALUES (?, ?, ?)");
     $stmt->execute([$name, $email, $hashedPassword]);
 
     echo json_encode(['success' => true, 'message' => 'Registro exitoso']);

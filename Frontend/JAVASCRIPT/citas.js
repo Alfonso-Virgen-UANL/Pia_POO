@@ -94,7 +94,7 @@ document.querySelector('.form-citas').addEventListener('submit', async function(
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('⚠️ Error al conectar con el servidor. Verifica tu conexión.');
+        alert('Error al conectar con el servidor. Verifica tu conexión.');
     } finally {
         if (submitBtn) {
             submitBtn.disabled = false;

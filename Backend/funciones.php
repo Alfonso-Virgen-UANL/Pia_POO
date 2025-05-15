@@ -1,25 +1,19 @@
 <?php
-require 'conxBs.php';
+// Funciones de utilidad para la aplicación
 
+// Función para sanitizar entradas del usuario
 function sanitizeInput($data) {
-    return htmlspecialchars(strip_tags(trim($data)));
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 
+// Función para verificar si un email ya existe en la base de datos
 function emailExists($email) {
     global $pdo;
-    $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE email = ?");
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM usuarios WHERE email = ?");
     $stmt->execute([$email]);
-    return $stmt->fetch() !== false;
-}
-
-function verifyCsrfToken($token) {
-    return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
-}
-
-function generateCsrfToken() {
-    if (empty($_SESSION['csrf_token'])) {
-        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-    }
-    return $_SESSION['csrf_token'];
+    return $stmt->fetchColumn() > 0;
 }
 ?>
