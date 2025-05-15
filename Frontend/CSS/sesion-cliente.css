@@ -11,7 +11,7 @@ body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
   color: #333;
-  background-image: url(../imagenes/vintageF.png);
+  background-image: url(../HTML/imagenes/vintageF.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -260,7 +260,7 @@ button:hover {
   
   .footer .contact-icon {
     width: 45px;
-    height: 45pxpx;
+    height: 45px;
     margin-right: 10px;
   }
   
@@ -298,4 +298,10 @@ button:hover {
     background-color: #EAD2AB; /* Cambia el fondo al pasar el mouse */
     color: #393b3a; /* Cambia el color del texto al pasar el mouse */
     text-decoration: none; /* Asegura que no haya subrayado */
+  }
+
+  @media (max-width: 968px) {
+    .container1 {
+      margin-left: 280px;
+    }
   }

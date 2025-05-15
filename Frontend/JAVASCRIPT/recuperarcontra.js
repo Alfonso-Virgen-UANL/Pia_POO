@@ -1,17 +1,16 @@
-document.getElementById('password-recovery-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Simular envío del formulario
+async function submitRecovery() {
     const email = document.getElementById('email').value;
-    
-    // Aquí iría la lógica real para enviar el correo de recuperación
-    console.log('Enviando enlace de recuperación a:', email);
-    
-    // Mostrar mensaje de éxito
-    document.getElementById('success-message').style.display = 'block';
-    document.getElementById('recovery-form').querySelector('p').style.display = 'none';
-    
-    // Opcional: Limpiar el campo después de enviar
-    document.getElementById('email').value = '';
-    
-});
+        try {
+        const response = await fetch('recupDeCont.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email })});
+    const data = await response.json();
+        lert(data.message || 'Si el email existe, recibirás instrucciones');
+        window.location.href = 'sesion-cliente.html';
+        } catch (error) {
+        alert('Error de conexión');
+        }
+}

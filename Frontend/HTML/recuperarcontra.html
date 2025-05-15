@@ -3,80 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperar Contraseña - Barbería Hefesto</title>
-    <link rel="stylesheet" href="CSS/recuperarcontra.css">
+    <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="../CSS/recuoerarcontra.css">
 </head>
 <body>
-    <header>
-        <div class="menu container">
-            <a href="Inicio.html" class="logo">
-                <img src="imagenes/logo.svg" alt="Logo Barbería Hefesto">
-            </a>
-            <nav class="navbar" aria-label="Menú principal">
-                <ul>
-                    <li><a href="Inicio.html">Inicio</a></li>
-                    <li><a href="Servicios.html">Servicios</a></li>
-                    <li><a href="citas.html">Agendar Cita</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
     <div class="password-recovery-container">
         <div class="logo">
-            <img src="imagenes/logo.svg" alt="Logo Barbería">
+            <!-- Reemplaza con tu logo -->
+            <img src="imagenes/logo.svg" alt="Logo">
         </div>
         
         <div id="recovery-form">
-            <h1>Recuperar Contraseña</h1>
-            <p>Ingresa tu correo electrónico para recibir instrucciones</p>
+            <h1>¿Olvidaste tu contraseña?</h1>
+            <p>Ingresa tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</p>
             
-            <form id="recoveryForm">
+            <div class="success-message" id="success-message">
+                ¡Listo! Hemos enviado un enlace de recuperación a tu correo electrónico.
+            </div>
+            
+            <form id="password-recovery-form">
                 <div class="form-group">
                     <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
                 </div>
                 
-                <button type="button" onclick="submitRecovery()">Enviar Instrucciones</button>
+                <button type="button" onclick="submitRecovery()" class="submit-btn">Enviar enlace de recuperación</button>
             </form>
             
             <div class="back-to-login">
-                <a href="sesion-cliente.html">← Volver a Iniciar Sesión</a>
+                ¿Recordaste tu contraseña? <a href="sesion-cliente.html">Inicia sesión</a>
             </div>
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="footer-content container">
-            <h3>Contactos</h3>
-            <address>
-                <ul>
-                    <li><img src="imagenes/tel1.svg" alt="Teléfono"> 81 1234 5678</li>
-                    <li><img src="imagenes/wp2.svg" alt="WhatsApp"> 81 8765 4321</li>
-                </ul>
-            </address>
-        </div>
-    </footer>
-
-    <script>
-        async function submitRecovery() {
-            const email = document.getElementById('email').value;
-            try {
-                const response = await fetch('recupDeCont.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email })
-                });
-                
-                const data = await response.json();
-                alert(data.message || 'Si el email existe, recibirás instrucciones');
-                window.location.href = 'sesion-cliente.html';
-            } catch (error) {
-                alert('Error de conexión');
-            }
-        }
-    </script>
+    <script src="/Frontend/JAVASCRIPT/recuperarcontra.js"></script>
 </body>
 </html>

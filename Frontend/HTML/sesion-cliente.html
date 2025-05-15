@@ -4,21 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - Barbería Hefesto</title>
-    <link rel="stylesheet" href="CSS/sesion-cliente.css">
+    <link rel="stylesheet" href="../CSS/sesion-cliente.css">
 </head>
 <body>
     <header>
         <div class="menu container">
             <a href="Inicio.html" class="logo">
-                <img src="imagenes/logo.svg" alt="Logo Barbería Hefesto">
+                <img src="imagenes/logo.svg" alt="Logo" class="logo-img">
             </a>
-            <nav class="navbar" aria-label="Menú principal">
+            <nav class="navbar" aria-label="Menú de navegación principal">
                 <ul>
                     <li><a href="Inicio.html">Inicio</a></li>
                     <li><a href="Servicios.html">Servicios</a></li>
-                    <li><a href="citas.html">Agendar Cita</a></li>
+                    <li><a href="citas.html" >Agendar Cita</a></li>
                 </ul>
             </nav>
+        </nav>
+            <div id="user-section">
+                <a href="sesion-cliente.html" class="Usuario" id="login-link">
+                    <img src="imagenes/usuraio.svg" alt="Iniciar sesión" class="usuario-icono">
+                </a>
+                <span id="welcome-message" style="display:none"></span>
+            </div>
         </div>
     </header>
 
@@ -41,14 +48,14 @@
                     <a href="recuperarcontra.html">¿Olvidaste tu contraseña?</a>
                 </div>
                 <button type="submit">Iniciar Sesión</button>
-                <div class="switch-form">
+        <div class="switch-form">
                     ¿No tienes una cuenta? <a href="#" onclick="showRegister()">Regístrate</a>
                 </div>
             </form>
         </div>
 
         <div id="register-form" class="form-container hidden">
-            <form id="registerForm" action="registro.php" method="post">
+            <form id="registerForm" action="registro.php" method="post" class="form">
                 <h2>Registro</h2>
                 <div class="input-group">
                     <label for="register-name">Nombre Completo</label>
@@ -85,13 +92,13 @@
             <h3>Contactos</h3>
             <address>
                 <ul>
-                    <li><img src="imagenes/tel1.svg" alt="Teléfono"> 81 1234 5678</li>
-                    <li><img src="imagenes/wp2.svg" alt="WhatsApp"> 81 8765 4321</li>
+                    <li><img src="imagenes/tel1.svg" alt="Teléfono" class="contact-icon"> 81 1234 5678</li>
+                    <li><img src="imagenes/wp2.svg" alt="WhatsApp" class="contact-icon"> 81 8765 4321</li>
                 </ul>
             </address>
         </div>
     </footer>
 
-    <script src="sesion-cliente.js"></script>
+    <script src="../JAVASCRIPT/sesion-cliente.js"></script>
 </body>
 </html>
