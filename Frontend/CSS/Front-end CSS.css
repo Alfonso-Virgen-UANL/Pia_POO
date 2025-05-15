@@ -11,7 +11,7 @@ body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
   color: #333;
-  background-image: url(../imagenes/vintageF.png);
+  background-image: url(../HTML/imagenes/vintageF.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -71,6 +71,8 @@ text-decoration: underline overline;
   height: 90px;
   width: 100px;
 }
+
+
 
 .navbar ul {
   list-style: none;
@@ -168,13 +170,13 @@ background-color: #334433;
   margin: 150px;
   display: right;
   max-width: 600px;
-  margin-top: 250px;
+  margin-top: 150px;
   margin-left: 50px;
 
 }
 
 .quienes-somos-2 {
-  background-image: url(../imagenes/barberriahorizontal.png);
+  background-image: url(../HTML/imagenes/barberriahorizontal.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover; 

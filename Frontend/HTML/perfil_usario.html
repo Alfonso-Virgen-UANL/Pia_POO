@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil del Cliente - [Nombre de tu Barbería]</title>
-<link rel="stylesheet" href="../CSS/perfil_usuario.css">
+    <title>Perfil del Cliente</title>
+    <link rel="stylesheet" href="../CSS/perfil_usuario.css">
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <!-- Reemplaza con el logo de tu barbería -->
-            <img src="logo-barberia.png" alt="Logo Barbería" class="barberia-logo">
+            <a href="Inicio.html">
+                <img src="imagenes/logo.svg" alt="Logo Barbería" class="barberia-logo">
+            </a>
             <h1>Perfil del Cliente</h1>
         </div>
         
         <div class="profile-section">
-            <!-- Foto del cliente -->
-            <img src="foto-cliente.jpg" alt="Foto del cliente" class="profile-pic">
-            
+            <img id="profile-pic" src="" alt="Foto del cliente" class="profile-pic">
             <div class="profile-info">
-                <h2>Juan Pérez</h2>
-                <p><strong>Cliente desde:</strong> Enero 2022</p>
-                <p><strong>Fecha de nacimiento:</strong> 15/03/1985</p>
-                <p><strong>Teléfono:</strong> +1 234 567 890</p>
+                <h2 id="nombre"></h2>
+                <p><strong>Cliente desde:</strong> <span id="cliente-desde"></span></p>
+                <p><strong>Fecha de nacimiento:</strong> <span id="fecha-nacimiento"></span></p>
+                <p><strong>Teléfono:</strong> <span id="telefono"></span></p>
             </div>
         </div>
         
@@ -31,45 +30,45 @@
                 <div class="detail-card">
                     <h3>Información Personal</h3>
                     <div class="detail-item">
-                        <strong>Email:</strong> juan.perez@example.com
+                        <strong>Email:</strong> <span id="email"></span>
                     </div>
                     <div class="detail-item">
-                        <strong>Dirección:</strong> Calle Falsa 123
+                        <strong>Dirección:</strong> <span id="direccion"></span>
                     </div>
                     <div class="detail-item">
-                        <strong>Ciudad:</strong> Ciudad Ejemplo
+                        <strong>Ciudad:</strong> <span id="ciudad"></span>
                     </div>
                 </div>
                 
                 <div class="detail-card">
                     <h3>Preferencias</h3>
                     <div class="detail-item">
-                        <strong>Barbero preferido:</strong> Carlos Gómez
+                        <strong>Barbero preferido:</strong> <span id="barbero-preferido"></span>
                     </div>
                     <div class="detail-item">
-                        <strong>Servicio favorito:</strong> Corte clásico + afeitado
+                        <strong>Servicio favorito:</strong> <span id="servicio-favorito"></span>
                     </div>
                     <div class="detail-item">
-                        <strong>Productos usados:</strong> Línea premium
+                        <strong>Productos usados:</strong> <span id="productos-usados"></span>
                     </div>
                 </div>
                 
                 <div class="detail-card">
                     <h3>Historial Reciente</h3>
                     <div class="detail-item">
-                        <strong>Última visita:</strong> 15/10/2023
+                        <strong>Última visita:</strong> <span id="ultima-visita"></span>
                     </div>
                     <div class="detail-item">
-                        <strong>Servicio:</strong> Corte + Barba
+                        <strong>Servicio:</strong> <span id="servicio"></span>
                     </div>
                     <div class="detail-item">
-                        <strong>Próxima cita:</strong> 12/11/2023
+                        <strong>Próxima cita:</strong> <span id="proxima-cita"></span>
                     </div>
                 </div>
                 
                 <div class="detail-card">
                     <h3>Notas del Barbero</h3>
-                    <p>Prefiere el lado izquierdo más corto que el derecho. Usar navaja caliente para la barba.</p>
+                    <p id="notas-barbero"></p>
                 </div>
             </div>
         </div>
@@ -78,5 +77,30 @@
             <p>© 2023 [Nombre de tu Barbería] - Todos los derechos reservados</p>
         </div>
     </div>
+
+    <script>
+        // Cargar datos del usuario
+        const userId = 1; // Cambiar según el usuario actual
+        fetch(`http://localhost:3000/api/usuario/${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('profile-pic').src = data.foto || 'default.jpg';
+                document.getElementById('nombre').textContent = data.nombre;
+                document.getElementById('cliente-desde').textContent = data.cliente_desde;
+                document.getElementById('fecha-nacimiento').textContent = data.fecha_nacimiento;
+                document.getElementById('telefono').textContent = data.telefono;
+                document.getElementById('email').textContent = data.email;
+                document.getElementById('direccion').textContent = data.direccion;
+                document.getElementById('ciudad').textContent = data.ciudad;
+                document.getElementById('barbero-preferido').textContent = data.barbero_preferido;
+                document.getElementById('servicio-favorito').textContent = data.servicio_favorito;
+                document.getElementById('productos-usados').textContent = data.productos_usados;
+                document.getElementById('ultima-visita').textContent = data.ultima_visita;
+                document.getElementById('servicio').textContent = data.servicio;
+                document.getElementById('proxima-cita').textContent = data.proxima_cita;
+                document.getElementById('notas-barbero').textContent = data.notas_barbero;
+            })
+            .catch(error => console.error('Error al cargar los datos:', error));
+    </script>
 </body>
 </html>
