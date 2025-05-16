@@ -23,8 +23,11 @@ function verificarSesion() {
         }
 
         const mainContainer = document.getElementById('main-container');
+        // Verificar que el elemento existe antes de intentar acceder a sus propiedades
         const loadingMessage = document.getElementById('loading-message');
-        loadingMessage.style.display = 'none';
+        if (loadingMessage) {
+            loadingMessage.style.display = 'none';
+        }
 
         if (data.success && data.autenticado && data.usuario) {
             // Validación exhaustiva de datos del usuario
@@ -38,8 +41,27 @@ function verificarSesion() {
             usuario.telefono = usuario.telefono || 'No disponible';
             
             mostrarPerfil(usuario);
+            
+            // Actualizar también el header si existen esos elementos
+            const headerUsername = document.getElementById('header-username');
+            if (headerUsername) {
+                headerUsername.textContent = usuario.nombre;
+            }
+            
+            const loggedOutView = document.getElementById('logged-out-view');
+            const loggedInView = document.getElementById('logged-in-view');
+            
+            if (loggedOutView) loggedOutView.style.display = 'none';
+            if (loggedInView) loggedInView.style.display = 'flex';
         } else {
             mostrarMensajeNoSesion();
+            
+            // Actualizar el header para mostrar los enlaces de sesión
+            const loggedOutView = document.getElementById('logged-out-view');
+            const loggedInView = document.getElementById('logged-in-view');
+            
+            if (loggedOutView) loggedOutView.style.display = 'block';
+            if (loggedInView) loggedInView.style.display = 'none';
         }
     })
     .catch(error => {
@@ -55,6 +77,10 @@ function verificarSesion() {
 // Función para mostrar el perfil del usuario
 function mostrarPerfil(usuario) {
     const container = document.getElementById('main-container');
+    if (!container) {
+        console.error('No se encontró el contenedor principal');
+        return;
+    }
     
     // Obtener la fecha actual para calcular el tiempo como cliente
     const fechaActual = new Date();
@@ -142,10 +168,13 @@ function mostrarPerfil(usuario) {
     container.innerHTML = perfilHTML;
     
     // Añadir funcionalidad al botón de cerrar sesión
-    document.getElementById('logout-btn').addEventListener('click', function(e) {
-        e.preventDefault();
-        cerrarSesion();
-    });
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            cerrarSesion();
+        });
+    }
     
     // Configurar el modal de edición de perfil
     configurarModalEditarPerfil(usuario);
@@ -158,6 +187,12 @@ function configurarModalEditarPerfil(usuario) {
     const closeBtn = document.querySelector('.close-modal');
     const cancelBtn = document.querySelector('.cancel-btn');
     const form = document.getElementById('edit-profile-form');
+    
+    // Verificar que todos los elementos existen antes de añadir listeners
+    if (!modal || !editBtn || !closeBtn || !cancelBtn || !form) {
+        console.error('Elementos del modal no encontrados');
+        return;
+    }
     
     // Abrir modal
     editBtn.addEventListener('click', function(e) {
@@ -191,6 +226,11 @@ function configurarModalEditarPerfil(usuario) {
         const passwordConfirm = document.getElementById('edit-password-confirm').value;
         const formMessage = document.getElementById('form-message');
         
+        if (!formMessage) {
+            console.error('Elemento de mensaje de formulario no encontrado');
+            return;
+        }
+        
         // Validar coincidencia de contraseñas si se están cambiando
         if (password && password !== passwordConfirm) {
             formMessage.textContent = 'Las contraseñas no coinciden';
@@ -198,13 +238,24 @@ function configurarModalEditarPerfil(usuario) {
             return;
         }
         
+        // Validar campos obligatorios
+        const nombre = document.getElementById('edit-nombre').value.trim();
+        const email = document.getElementById('edit-email').value.trim();
+        const currentPassword = document.getElementById('current-password').value;
+        
+        if (!nombre || !email || !currentPassword) {
+            formMessage.textContent = 'Por favor, complete todos los campos obligatorios';
+            formMessage.classList.add('error');
+            return;
+        }
+        
         // Recopilar datos del formulario
         const formData = {
-            nombre: document.getElementById('edit-nombre').value,
-            email: document.getElementById('edit-email').value,
-            telefono: document.getElementById('edit-telefono').value,
+            nombre: nombre,
+            email: email,
+            telefono: document.getElementById('edit-telefono').value.trim(),
             password: password,
-            current_password: document.getElementById('current-password').value
+            current_password: currentPassword
         };
         
         // Enviar datos al servidor
@@ -214,25 +265,18 @@ function configurarModalEditarPerfil(usuario) {
 
 // Función para actualizar el perfil del usuario
 function actualizarPerfil(formData, modal, formMessage) {
+    if (!formMessage) {
+        console.error('Elemento de mensaje de formulario no encontrado');
+        return;
+    }
+    
     formMessage.textContent = 'Actualizando perfil...';
     formMessage.classList.remove('error');
     formMessage.classList.add('info');
     formMessage.style.display = 'block';
     
-    // Determinar la URL correcta basada en la estructura actual
-    // Obtenemos la URL base del verificar_sesion.php ya que sabemos que funciona
-    let baseUrl = '';
-    const scriptPath = document.querySelector('script[src*="perfil_usuario.js"]').getAttribute('src');
-    
-    // Extraemos la ruta base
-    if (scriptPath.includes('/JAVASCRIPT/')) {
-        baseUrl = scriptPath.substring(0, scriptPath.indexOf('/JAVASCRIPT/'));
-    } else {
-        baseUrl = '/barberia/Pia_POO';  // Ruta predeterminada
-    }
-    
-    // Construimos la URL completa para actualizar_perfil.php
-    const updateUrl = `${baseUrl}/Backend/actualizar_perfil.php`;
+    // Utilizar directamente la ruta conocida del backend
+    const updateUrl = '/barberia/Pia_POO/Backend/actualizar_perfil.php';
     console.log('Enviando solicitud a:', updateUrl);
     
     fetch(updateUrl, {
@@ -246,19 +290,29 @@ function actualizarPerfil(formData, modal, formMessage) {
     })
     .then(response => {
         console.log('Respuesta del servidor:', response.status);
-        if (!response.ok) {
-            return response.text().then(text => {
-                console.error('Contenido de error:', text);
-                throw new Error(`Error HTTP: ${response.status}`);
-            });
-        }
-        return response.json().catch(err => {
-            console.error('Error al parsear JSON:', err);
-            throw new Error('La respuesta no es un JSON válido');
+        
+        // Capturar tanto el texto como el estado para mejor diagnóstico
+        return response.text().then(text => {
+            console.log('Contenido de respuesta:', text);
+            
+            try {
+                // Intentar parsear como JSON si es posible
+                const data = JSON.parse(text);
+                if (!response.ok) {
+                    throw new Error(data.error || `Error HTTP: ${response.status}`);
+                }
+                return data;
+            } catch (e) {
+                console.error('Error al parsear JSON:', e);
+                if (!response.ok) {
+                    throw new Error(`Error HTTP: ${response.status}. Contenido: ${text}`);
+                }
+                throw new Error('La respuesta no es un JSON válido');
+            }
         });
     })
     .then(data => {
-        console.log('Datos recibidos:', data);
+        console.log('Datos procesados:', data);
         if (data.success) {
             formMessage.textContent = 'Perfil actualizado correctamente';
             formMessage.classList.remove('error', 'info');
@@ -267,7 +321,7 @@ function actualizarPerfil(formData, modal, formMessage) {
             // Actualizar los datos en la sesión
             if (data.usuario) {
                 setTimeout(() => {
-                    modal.style.display = 'none';
+                    if (modal) modal.style.display = 'none';
                     verificarSesion(); // Recargar la página con los nuevos datos
                 }, 1500);
             }
@@ -279,7 +333,7 @@ function actualizarPerfil(formData, modal, formMessage) {
     })
     .catch(error => {
         console.error('Error completo al actualizar perfil:', error);
-        formMessage.textContent = 'Error al conectar con el servidor. Inténtalo de nuevo más tarde.';
+        formMessage.textContent = `Error: ${error.message || 'Error al conectar con el servidor'}`;
         formMessage.classList.remove('info', 'success');
         formMessage.classList.add('error');
     });
@@ -288,6 +342,10 @@ function actualizarPerfil(formData, modal, formMessage) {
 // Función para mostrar un mensaje cuando no hay sesión
 function mostrarMensajeNoSesion() {
     const container = document.getElementById('main-container');
+    if (!container) {
+        console.error('No se encontró el contenedor principal');
+        return;
+    }
     
     const mensajeHTML = `
         <div class="no-session">
@@ -307,6 +365,13 @@ function mostrarMensajeNoSesion() {
 // Función mejorada para mostrar errores
 function mostrarErrorDetallado(titulo, mensaje, mostrarReintentar = false) {
     const container = document.getElementById('main-container');
+    if (!container) {
+        console.error('No se encontró el contenedor principal');
+        // Como último recurso, mostrar un alert
+        alert(`${titulo}: ${mensaje}`);
+        return;
+    }
+    
     container.innerHTML = `
         <div class="error-container">
             <h2>${titulo}</h2>
@@ -314,10 +379,11 @@ function mostrarErrorDetallado(titulo, mensaje, mostrarReintentar = false) {
             ${mostrarReintentar ? 
                 '<button onclick="verificarSesion()" class="btn-reintentar">Reintentar</button>' : ''}
             <a href="Inicio.html" class="btn-inicio">Volver al Inicio</a>
-            <div class="debug-info" style="display:none">
+            <div class="debug-info">
                 <h3>Información para diagnóstico:</h3>
                 <p>URL: ${window.location.href}</p>
                 <p>User Agent: ${navigator.userAgent}</p>
+                <p>Timestamp: ${new Date().toISOString()}</p>
             </div>
         </div>
     `;
@@ -326,7 +392,15 @@ function mostrarErrorDetallado(titulo, mensaje, mostrarReintentar = false) {
 // Función para cerrar sesión
 function cerrarSesion() {
     fetch('/barberia/Pia_POO/Backend/cerrar_sesion.php')
-        .then(response => response.json())
+        .then(response => {
+            // Manejar posibles errores en la respuesta
+            if (!response.ok) {
+                throw new Error(`Error HTTP: ${response.status}`);
+            }
+            return response.json().catch(error => {
+                throw new Error("La respuesta no es JSON válido");
+            });
+        })
         .then(data => {
             if (data.success) {
                 // Redireccionar a la página de inicio
@@ -344,5 +418,11 @@ function cerrarSesion() {
 
 // Ejecutar la verificación de sesión cuando se carga la página
 document.addEventListener('DOMContentLoaded', function() {
-    verificarSesion();
+    try {
+        console.log('Iniciando verificación de sesión');
+        verificarSesion();
+    } catch (error) {
+        console.error('Error al iniciar la verificación de sesión:', error);
+        alert('Error al cargar la página. Por favor, intenta nuevamente.');
+    }
 });

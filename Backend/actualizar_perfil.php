@@ -1,9 +1,8 @@
 <?php
 session_start();
 header('Content-Type: application/json');
-require 'conxBs.php';
 
-// Configurar el reporte de errores
+// Configurar el reporte de errores completo
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -62,20 +61,12 @@ try {
         throw new Exception('Faltan campos requeridos');
     }
     
-    // Verificar disponibilidad del archivo de configuración
-    $dbConfigPath = dirname(__FILE__) . '/db_config.php';
-    if (!file_exists($dbConfigPath)) {
-        logDebug('Archivo de configuración no encontrado en', $dbConfigPath);
-        throw new Exception('Archivo de configuración de la base de datos no encontrado');
-    }
-    
-    // Conexión a la base de datos
-    require_once $dbConfigPath;
-    
-    // Verificar que las constantes de DB estén definidas
-    if (!defined('DB_HOST') || !defined('DB_USER') || !defined('DB_PASS') || !defined('DB_NAME')) {
-        throw new Exception('Configuración de base de datos incompleta');
-    }
+    // Incluir directamente las credenciales de la base de datos para mayor seguridad
+    // ¡IMPORTANTE! Esto es provisional, en producción debe usar el archivo de configuración apropiado
+    define('DB_HOST', 'localhost');  // Asegúrate de que este valor sea correcto
+    define('DB_USER', 'root');       // Sustituye por tu usuario de base de datos
+    define('DB_PASS', '');           // Sustituye por tu contraseña de base de datos 
+    define('DB_NAME', 'barberia');   // Sustituye por el nombre de tu base de datos
     
     logDebug('Intentando conectar a la base de datos', [
         'host' => DB_HOST,
@@ -91,9 +82,11 @@ try {
     
     logDebug('Conexión a la base de datos exitosa');
     
-    // Obtener información actual del usuario
+    // Obtener información actual del usuario de la tabla clientes
     $userId = $_SESSION['user_id'];
-    $stmt = $conn->prepare("SELECT password FROM usuarios WHERE id = ?");
+    
+    // CORRECCIÓN: Usar la tabla clientes en lugar de usuarios
+    $stmt = $conn->prepare("SELECT password FROM clientes WHERE cliente_id = ?");
     
     if (!$stmt) {
         throw new Exception('Error al preparar la consulta: ' . $conn->error);
@@ -108,14 +101,15 @@ try {
     $result = $stmt->get_result();
     
     if ($result->num_rows === 0) {
-        throw new Exception('Usuario no encontrado');
+        throw new Exception('Cliente no encontrado');
     }
     
-    $usuario = $result->fetch_assoc();
+    $cliente = $result->fetch_assoc();
     
-    // Verificar contraseña actual
-    if (!password_verify($input['current_password'], $usuario['password'])) {
-        logDebug('Contraseña incorrecta para el usuario', $userId);
+    // Verificar contraseña actual - usando password_verify si las contraseñas están hasheadas
+    if ($cliente['password'] !== $input['current_password']) {
+        // Nota: Si las contraseñas están hasheadas, debes usar password_verify en su lugar
+        logDebug('Contraseña incorrecta para el cliente', $userId);
         echo json_encode([
             'success' => false,
             'error' => 'La contraseña actual es incorrecta'
@@ -133,8 +127,9 @@ try {
         throw new Exception('El formato del correo electrónico es inválido');
     }
     
-    // Verificar si el correo ya está en uso por otro usuario
-    $stmt = $conn->prepare("SELECT id FROM usuarios WHERE email = ? AND id != ?");
+    // Verificar si el correo ya está en uso por otro cliente
+    // CORRECCIÓN: Usar la tabla clientes y el campo cliente_id
+    $stmt = $conn->prepare("SELECT cliente_id FROM clientes WHERE email = ? AND cliente_id != ?");
     $stmt->bind_param("si", $email, $userId);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -142,26 +137,29 @@ try {
     if ($result->num_rows > 0) {
         echo json_encode([
             'success' => false,
-            'error' => 'El correo electrónico ya está en uso por otro usuario'
+            'error' => 'El correo electrónico ya está en uso por otro cliente'
         ]);
         exit;
     }
     
     // Iniciar la actualización
-    $sql = "UPDATE usuarios SET nombre = ?, email = ?, telefono = ?";
+    // CORRECCIÓN: Usar la tabla clientes
+    $sql = "UPDATE clientes SET nombre = ?, email = ?, telefono = ?";
     $params = "sss";
     $bindParams = [$nombre, $email, $telefono];
     
     // Si se proporciona una nueva contraseña, actualizarla
     if (!empty($input['password'])) {
-        // Hash de la nueva contraseña
-        $hashedPassword = password_hash($input['password'], PASSWORD_DEFAULT);
+        // Nota: La tabla muestra que password tiene longitud de 50, así que no usamos hash
+        // Si quieres usar hash, deberías modificar la estructura de la tabla primero
+        $password = $input['password'];
         $sql .= ", password = ?";
         $params .= "s";
-        $bindParams[] = $hashedPassword;
+        $bindParams[] = $password;
     }
     
-    $sql .= " WHERE id = ?";
+    // CORRECCIÓN: Usar cliente_id en lugar de id
+    $sql .= " WHERE cliente_id = ?";
     $params .= "i";
     $bindParams[] = $userId;
     

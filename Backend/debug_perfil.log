@@ -25,3 +25,192 @@
     [current_password] => prueba12345
 )
 
+[2025-05-16 19:28:47] Solicitud recibida en actualizar_perfil.php
+[2025-05-16 19:28:47] SESSION: Array
+(
+    [user_id] => 9
+    [user_name] => prueba
+    [user_phone] => 8180398143
+    [user_email] => prueba@gmail.com
+)
+
+[2025-05-16 19:28:47] Datos JSON recibidos: {"nombre":"prueba","email":"prueba@gmail.com","telefono":"8180398143","password":"pruebanuevo","current_password":"prueba123"}
+[2025-05-16 19:28:47] Datos procesados: Array
+(
+    [nombre] => prueba
+    [email] => prueba@gmail.com
+    [telefono] => 8180398143
+    [password] => pruebanuevo
+    [current_password] => prueba123
+)
+
+[2025-05-16 19:28:47] Intentando conectar a la base de datos: Array
+(
+    [host] => localhost
+    [database] => barberia
+    [user] => root
+)
+
+[2025-05-16 19:28:47] Conexión a la base de datos exitosa
+[2025-05-16 19:28:48] Error en actualizar_perfil.php: Table 'barberia.usuarios' doesn't exist
+[2025-05-16 19:31:47] Solicitud recibida en actualizar_perfil.php
+[2025-05-16 19:31:47] SESSION: Array
+(
+    [user_id] => 9
+    [user_name] => prueba
+    [user_phone] => 8180398143
+    [user_email] => prueba@gmail.com
+)
+
+[2025-05-16 19:31:47] Datos JSON recibidos: {"nombre":"prueba","email":"prueba@gmail.com","telefono":"8180398143","password":"pruebanuevo","current_password":"prueba123"}
+[2025-05-16 19:31:47] Datos procesados: Array
+(
+    [nombre] => prueba
+    [email] => prueba@gmail.com
+    [telefono] => 8180398143
+    [password] => pruebanuevo
+    [current_password] => prueba123
+)
+
+[2025-05-16 19:31:47] Intentando conectar a la base de datos: Array
+(
+    [host] => localhost
+    [database] => barberia
+    [user] => root
+)
+
+[2025-05-16 19:31:47] Conexión a la base de datos exitosa
+[2025-05-16 19:31:47] Error en actualizar_perfil.php: Unknown column 'id' in 'where clause'
+[2025-05-16 19:31:48] Solicitud recibida en actualizar_perfil.php
+[2025-05-16 19:31:48] SESSION: Array
+(
+    [user_id] => 9
+    [user_name] => prueba
+    [user_phone] => 8180398143
+    [user_email] => prueba@gmail.com
+)
+
+[2025-05-16 19:31:48] Datos JSON recibidos: {"nombre":"prueba","email":"prueba@gmail.com","telefono":"8180398143","password":"pruebanuevo","current_password":"prueba123"}
+[2025-05-16 19:31:48] Datos procesados: Array
+(
+    [nombre] => prueba
+    [email] => prueba@gmail.com
+    [telefono] => 8180398143
+    [password] => pruebanuevo
+    [current_password] => prueba123
+)
+
+[2025-05-16 19:31:48] Intentando conectar a la base de datos: Array
+(
+    [host] => localhost
+    [database] => barberia
+    [user] => root
+)
+
+[2025-05-16 19:31:48] Conexión a la base de datos exitosa
+[2025-05-16 19:31:48] Error en actualizar_perfil.php: Unknown column 'id' in 'where clause'
+[2025-05-16 19:40:32] Solicitud recibida en actualizar_perfil.php
+[2025-05-16 19:40:32] SESSION: Array
+(
+    [user_id] => 9
+    [user_name] => prueba
+    [user_phone] => 8180398143
+    [user_email] => prueba@gmail.com
+)
+
+[2025-05-16 19:40:32] Datos JSON recibidos: {"nombre":"prueba","email":"prueba@gmail.com","telefono":"8180398143","password":"pruebanuevo","current_password":"prueba12345"}
+[2025-05-16 19:40:32] Datos procesados: Array
+(
+    [nombre] => prueba
+    [email] => prueba@gmail.com
+    [telefono] => 8180398143
+    [password] => pruebanuevo
+    [current_password] => prueba12345
+)
+
+[2025-05-16 19:40:32] Intentando conectar a la base de datos: Array
+(
+    [host] => localhost
+    [database] => barberia
+    [user] => root
+)
+
+[2025-05-16 19:40:32] Conexión a la base de datos exitosa
+[2025-05-16 19:40:32] Preparando consulta SQL: Array
+(
+    [sql] => UPDATE clientes SET nombre = ?, email = ?, telefono = ?, password = ? WHERE cliente_id = ?
+    [params] => ssssi
+    [userId] => 9
+)
+
+[2025-05-16 19:40:32] Perfil actualizado con éxito
+[2025-05-16 19:42:04] Solicitud recibida en actualizar_perfil.php
+[2025-05-16 19:42:04] SESSION: Array
+(
+    [user_id] => 9
+    [user_name] => prueba
+    [user_phone] => 8180398143
+    [user_email] => prueba@gmail.com
+)
+
+[2025-05-16 19:42:04] Datos JSON recibidos: {"nombre":"Alfonso","email":"prueba@gmail.com","telefono":"8180398143","password":"","current_password":"pruebanuevo"}
+[2025-05-16 19:42:04] Datos procesados: Array
+(
+    [nombre] => Alfonso
+    [email] => prueba@gmail.com
+    [telefono] => 8180398143
+    [password] => 
+    [current_password] => pruebanuevo
+)
+
+[2025-05-16 19:42:04] Intentando conectar a la base de datos: Array
+(
+    [host] => localhost
+    [database] => barberia
+    [user] => root
+)
+
+[2025-05-16 19:42:04] Conexión a la base de datos exitosa
+[2025-05-16 19:42:04] Preparando consulta SQL: Array
+(
+    [sql] => UPDATE clientes SET nombre = ?, email = ?, telefono = ? WHERE cliente_id = ?
+    [params] => sssi
+    [userId] => 9
+)
+
+[2025-05-16 19:42:04] Perfil actualizado con éxito
+[2025-05-16 19:48:22] Solicitud recibida en actualizar_perfil.php
+[2025-05-16 19:48:22] SESSION: Array
+(
+    [user_id] => 9
+    [user_name] => Alfonso
+    [user_phone] => 8180398143
+    [user_email] => prueba@gmail.com
+)
+
+[2025-05-16 19:48:22] Datos JSON recibidos: {"nombre":"Alfonso","email":"alfonso@gmail.com","telefono":"8180398144","password":"alfon12345","current_password":"pruebanuevo"}
+[2025-05-16 19:48:22] Datos procesados: Array
+(
+    [nombre] => Alfonso
+    [email] => alfonso@gmail.com
+    [telefono] => 8180398144
+    [password] => alfon12345
+    [current_password] => pruebanuevo
+)
+
+[2025-05-16 19:48:22] Intentando conectar a la base de datos: Array
+(
+    [host] => localhost
+    [database] => barberia
+    [user] => root
+)
+
+[2025-05-16 19:48:22] Conexión a la base de datos exitosa
+[2025-05-16 19:48:22] Preparando consulta SQL: Array
+(
+    [sql] => UPDATE clientes SET nombre = ?, email = ?, telefono = ?, password = ? WHERE cliente_id = ?
+    [params] => ssssi
+    [userId] => 9
+)
+
+[2025-05-16 19:48:22] Perfil actualizado con éxito
