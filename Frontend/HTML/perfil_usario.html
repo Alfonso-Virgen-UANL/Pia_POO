@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../CSS/perfil_usuario.css">
 </head>
 <body>
-<header>
+    <header>
         <div class="menu container">
             <a href="Inicio.html" class="logo">
                 <img src="imagenes/logo.svg" alt="Logo Barbería Hefesto" class="logo-img">
@@ -17,112 +17,41 @@
                     <li><a href="Inicio.html">Inicio</a></li>
                     <li><a href="Servicios.html">Servicios</a></li>
                     <li><a href="citas.html">Agendar Cita</a></li>
-                    <li><a href="mis_citas.html" class="active">Mis Citas</a></li>
-                    <li><a href="perfil_usario.html">Perfil</a></li>
+                    <li><a href="mis_citas.html">Mis Citas</a></li>
+                    <li><a href="perfil_usario.html" class="active">Perfil</a></li>
                 </ul>
             </nav>
             <div id="user-section">
-                <a href="sesion-cliente.html" class="Usuario" id="login-link">
-                    <img src="imagenes/usuraio.svg" alt="Iniciar sesión" class="usuario-icono">
-                </a>
-                <span id="welcome-message" style="display:none"></span>
+                <!-- Se mostrará según el estado de la sesión -->
+                <div id="logged-out-view">
+                    <a href="sesion-cliente.html" class="Usuario" id="login-link">
+                        <img src="imagenes/usuraio.svg" alt="Iniciar sesión" class="usuario-icono">
+                    </a>
+                </div>
+                <div id="logged-in-view" style="display:none">
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle">
+                            <img src="imagenes/usuraio.svg" alt="Usuario" class="usuario-icono">
+                            <span id="header-username"></span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="perfil_usario.html">Mi Perfil</a>
+                            <a href="mis_citas.html">Mis Citas</a>
+                            <a href="#" id="header-logout">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
-    <div class="container">
-        <div class="header">
-            <a href="Inicio.html">
-                <img src="imagenes/logo.svg" alt="Logo Barbería" class="barberia-logo">
-            </a>
-            <h1>Perfil del Cliente</h1>
-        </div>
-        
-        <div class="profile-section">
-            <img id="profile-pic" src="" alt="Foto del cliente" class="profile-pic">
-            <div class="profile-info">
-                <h2 id="nombre"></h2>
-                <p><strong>Cliente desde:</strong> <span id="cliente-desde"></span></p>
-                <p><strong>Fecha de nacimiento:</strong> <span id="fecha-nacimiento"></span></p>
-                <p><strong>Teléfono:</strong> <span id="telefono"></span></p>
-            </div>
-        </div>
-        
-        <div class="details-section">
-            <div class="details-grid">
-                <div class="detail-card">
-                    <h3>Información Personal</h3>
-                    <div class="detail-item">
-                        <strong>Email:</strong> <span id="email"></span>
-                    </div>
-                    <div class="detail-item">
-                        <strong>Dirección:</strong> <span id="direccion"></span>
-                    </div>
-                    <div class="detail-item">
-                        <strong>Ciudad:</strong> <span id="ciudad"></span>
-                    </div>
-                </div>
-                
-                <div class="detail-card">
-                    <h3>Preferencias</h3>
-                    <div class="detail-item">
-                        <strong>Barbero preferido:</strong> <span id="barbero-preferido"></span>
-                    </div>
-                    <div class="detail-item">
-                        <strong>Servicio favorito:</strong> <span id="servicio-favorito"></span>
-                    </div>
-                    <div class="detail-item">
-                        <strong>Productos usados:</strong> <span id="productos-usados"></span>
-                    </div>
-                </div>
-                
-                <div class="detail-card">
-                    <h3>Historial Reciente</h3>
-                    <div class="detail-item">
-                        <strong>Última visita:</strong> <span id="ultima-visita"></span>
-                    </div>
-                    <div class="detail-item">
-                        <strong>Servicio:</strong> <span id="servicio"></span>
-                    </div>
-                    <div class="detail-item">
-                        <strong>Próxima cita:</strong> <span id="proxima-cita"></span>
-                    </div>
-                </div>
-                
-                <div class="detail-card">
-                    <h3>Notas del Barbero</h3>
-                    <p id="notas-barbero"></p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>© 2025 Barberia Hefesto - Todos los derechos reservados</p>
+
+    <div class="container" id="main-container">
+        <!-- El contenido será cargado dinámicamente según el estado de la sesión -->
+        <div id="loading-message" style="text-align: center; padding: 50px;">
+            <p>Cargando información del perfil...</p>
         </div>
     </div>
 
-    <script>
-        // Cargar datos del usuario
-        const userId = 1; // Cambiar según el usuario actual
-        fetch(`http://localhost:3000/api/usuario/${userId}`)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('profile-pic').src = data.foto || 'default.jpg';
-                document.getElementById('nombre').textContent = data.nombre;
-                document.getElementById('cliente-desde').textContent = data.cliente_desde;
-                document.getElementById('fecha-nacimiento').textContent = data.fecha_nacimiento;
-                document.getElementById('telefono').textContent = data.telefono;
-                document.getElementById('email').textContent = data.email;
-                document.getElementById('direccion').textContent = data.direccion;
-                document.getElementById('ciudad').textContent = data.ciudad;
-                document.getElementById('barbero-preferido').textContent = data.barbero_preferido;
-                document.getElementById('servicio-favorito').textContent = data.servicio_favorito;
-                document.getElementById('productos-usados').textContent = data.productos_usados;
-                document.getElementById('ultima-visita').textContent = data.ultima_visita;
-                document.getElementById('servicio').textContent = data.servicio;
-                document.getElementById('proxima-cita').textContent = data.proxima_cita;
-                document.getElementById('notas-barbero').textContent = data.notas_barbero;
-            })
-            .catch(error => console.error('Error al cargar los datos:', error));
-    </script>
+    <script src="../JAVASCRIPT/perfil_usuario.js"></script>
 </body>
 </html>

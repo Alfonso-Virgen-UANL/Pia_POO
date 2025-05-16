@@ -32,7 +32,6 @@ try {
             c.fecha, 
             c.hora_inicio, 
             c.hora_fin, 
-            c.estado,
             b.nombre as barbero_nombre,
             b.barbero_id,
             s.nombre as servicio_principal_nombre

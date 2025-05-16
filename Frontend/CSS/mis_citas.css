@@ -99,31 +99,6 @@
     background-color: #f1f1f1;
 }
 
-/* Estados de citas */
-.estado-pendiente {
-    background-color: #2196F3;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.85rem;
-}
-
-.estado-completada {
-    background-color: #4CAF50;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.85rem;
-}
-
-.estado-cancelada {
-    background-color: #f44336;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.85rem;
-}
-
 /* Botones de acción */
 .btn-accion {
     padding: 6px 12px;

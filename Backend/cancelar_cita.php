@@ -34,9 +34,9 @@ try {
     
     $cita_id = intval($_POST['cita_id']);
     
-    // Verificar que la cita pertenece al cliente actual y está en estado pendiente
+    // Verificar que la cita pertenece al cliente actual
     $stmt = $pdo->prepare("
-        SELECT cita_id, estado FROM citas 
+        SELECT cita_id FROM citas 
         WHERE cita_id = ? AND cliente_id = ?
     ");
     $stmt->execute([$cita_id, $cliente_id]);
@@ -44,10 +44,6 @@ try {
     
     if (!$cita) {
         throw new Exception('Cita no encontrada o no pertenece a este cliente');
-    }
-    
-    if ($cita['estado'] !== 'pendiente') {
-        throw new Exception('Solo se pueden eliminar citas en estado pendiente');
     }
     
     // Eliminar la cita de la base de datos

@@ -108,10 +108,10 @@ try {
     $transaction_active = true;
     logDebug('Nueva transacción iniciada');
     
-    // Insertar la cita con campo estado VARCHAR
+    // Insertar la cita
     $stmt = $pdo->prepare("
-        INSERT INTO citas (barbero_id, cliente_id, servicio_id, fecha, hora_inicio, hora_fin, estado) 
-        VALUES (?, ?, ?, ?, ?, ?, 'pendiente')
+        INSERT INTO citas (barbero_id, cliente_id, servicio_id, fecha, hora_inicio, hora_fin) 
+        VALUES (?, ?, ?, ?, ?, ?)
     ");
     
     // Para simplificar, usamos el primer servicio como servicio_id principal
@@ -124,7 +124,6 @@ try {
         'fecha' => $fecha,
         'hora' => $hora,
         'hora_fin' => $hora_fin,
-        'estado' => 'pendiente'
     ]);
     
     $success = $stmt->execute([

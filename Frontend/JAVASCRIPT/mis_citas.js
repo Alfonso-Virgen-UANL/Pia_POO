@@ -13,8 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         cargarCitas();
     }
     
-    // Configurar filtros
-    document.getElementById('filtro-estado').addEventListener('change', aplicarFiltros);
+    // Configurar filtros (solo fecha ahora)
     document.getElementById('filtro-fecha').addEventListener('change', aplicarFiltros);
     document.getElementById('btn-limpiar-filtros').addEventListener('click', limpiarFiltros);
     
@@ -37,7 +36,7 @@ async function cargarCitas() {
     try {
         // Mostrar indicador de carga
         const citasBody = document.getElementById('citas-body');
-        citasBody.innerHTML = '<tr><td colspan="7" class="cargando">Cargando citas...</td></tr>';
+        citasBody.innerHTML = '<tr><td colspan="6" class="cargando">Cargando citas...</td></tr>';
         
         // Hacer solicitud al servidor
         const response = await fetch('/barberia/Pia_POO/Backend/obtener_citas.php', {
@@ -61,7 +60,7 @@ async function cargarCitas() {
     } catch (error) {
         console.error('Error al cargar citas:', error);
         document.getElementById('citas-body').innerHTML = 
-            `<tr><td colspan="7" class="error">Error al cargar citas: ${error.message}</td></tr>`;
+            `<tr><td colspan="6" class="error">Error al cargar citas: ${error.message}</td></tr>`;
     }
 }
 
@@ -91,22 +90,6 @@ function mostrarCitas(citas) {
         // Formato de hora: HH:MM:SS a HH:MM
         const horaFormateada = cita.hora_inicio.substring(0, 5);
         
-        // Clase CSS según el estado
-        let estadoClase = '';
-        switch(cita.estado) {
-            case 'pendiente':
-                estadoClase = 'estado-pendiente';
-                break;
-            case 'completada':
-                estadoClase = 'estado-completada';
-                break;
-            case 'cancelada':
-                estadoClase = 'estado-cancelada';
-                break;
-            default:
-                estadoClase = '';
-        }
-        
         // Verificar si hay servicios y procesar nombres de servicios
         let serviciosNombre = 'No disponible';
         if (cita.servicios && cita.servicios.length > 0) {
@@ -125,18 +108,15 @@ function mostrarCitas(citas) {
         const total = parseFloat(cita.total || 0).toFixed(2);
         
         html += `
-        <tr data-cita-id="${cita.cita_id}" data-estado="${cita.estado}" data-fecha="${cita.fecha}">
+        <tr data-cita-id="${cita.cita_id}" data-fecha="${cita.fecha}">
             <td>${fechaFormateada}</td>
             <td>${horaFormateada}</td>
             <td>${cita.barbero_nombre || 'No asignado'}</td>
             <td>${serviciosNombre}</td>
             <td>$${total}</td>
-            <td class="${estadoClase}">${cita.estado.charAt(0).toUpperCase() + cita.estado.slice(1)}</td>
             <td class="acciones">
                 <button class="btn-detalle" onclick="verDetalle(${cita.cita_id})">Ver detalle</button>
-                ${cita.estado === 'pendiente' ? 
-                    `<button class="btn-cancelar" onclick="cancelarCita(${cita.cita_id})">Eliminar</button>` : 
-                    ''}
+                <button class="btn-cancelar" onclick="cancelarCita(${cita.cita_id})">Eliminar</button>
             </td>
         </tr>
         `;
@@ -193,21 +173,14 @@ function verDetalle(citaId) {
             <p><strong>Fecha:</strong> ${fechaFormateada}</p>
             <p><strong>Hora:</strong> ${cita.hora_inicio.substring(0, 5)} - ${cita.hora_fin ? cita.hora_fin.substring(0, 5) : '?'}</p>
             <p><strong>Barbero:</strong> ${cita.barbero_nombre || 'No asignado'}</p>
-            <p><strong>Estado:</strong> <span class="estado-${cita.estado}">${cita.estado.charAt(0).toUpperCase() + cita.estado.slice(1)}</span></p>
             
             ${serviciosHTML}
             <p class="total-detalle"><strong>Total:</strong> $${total}</p>
         </div>
+        <div class="detalle-acciones">
+            <button class="btn-cancelar" onclick="cancelarCita(${cita.cita_id})">Eliminar cita</button>
+        </div>
     `;
-    
-    // Si la cita está pendiente, mostrar botón de eliminar
-    if (cita.estado === 'pendiente') {
-        contenidoHTML += `
-            <div class="detalle-acciones">
-                <button class="btn-cancelar" onclick="cancelarCita(${cita.cita_id})">Eliminar cita</button>
-            </div>
-        `;
-    }
     
     // Mostrar el modal con los detalles
     document.getElementById('detalle-contenido').innerHTML = contenidoHTML;
@@ -255,9 +228,8 @@ async function cancelarCita(citaId) {
     }
 }
 
-// Aplicar filtros de estado y fecha
+// Aplicar filtros (solo por fecha ahora)
 function aplicarFiltros() {
-    const estado = document.getElementById('filtro-estado').value;
     const fecha = document.getElementById('filtro-fecha').value;
     
     const filas = document.querySelectorAll('#citas-body tr');
@@ -265,11 +237,6 @@ function aplicarFiltros() {
     
     filas.forEach(fila => {
         let mostrar = true;
-        
-        // Filtrar por estado
-        if (estado !== 'todos' && fila.dataset.estado !== estado) {
-            mostrar = false;
-        }
         
         // Filtrar por fecha
         if (fecha && fila.dataset.fecha !== fecha) {
@@ -297,7 +264,6 @@ function aplicarFiltros() {
 
 // Limpiar filtros
 function limpiarFiltros() {
-    document.getElementById('filtro-estado').value = 'todos';
     document.getElementById('filtro-fecha').value = '';
     aplicarFiltros();
 }

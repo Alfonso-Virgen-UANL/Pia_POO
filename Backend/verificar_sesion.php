@@ -17,12 +17,12 @@ logDebug('SESSION', $_SESSION);
 try {
     // Verificar si hay una sesión activa
     if (isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
-        // Devolver información básica del usuario
+        // Devolver información del usuario con las claves que espera el frontend
         $usuario = [
             'id' => $_SESSION['user_id'],
             'nombre' => $_SESSION['user_name'],
-            'email' => $_SESSION['user_email'] ?? '',
-            'telefono' => $_SESSION['user_phone'] ?? ''
+            'email' => $_SESSION['user_email'] ?? 'No disponible',
+            'telefono' => $_SESSION['user_phone'] ?? 'No disponible'
         ];
         
         echo json_encode([
