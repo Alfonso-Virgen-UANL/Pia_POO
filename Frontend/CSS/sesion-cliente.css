@@ -109,19 +109,21 @@ text-decoration: underline overline;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    justify-items: center;
     align-items: center;
+    max-width: 400px;
+    max-height: 400px;
 }
 
 .container1 {
-    background-color: rgba(0, 0, 0, 0.144);
+    background-color: rgba(0, 0, 0, 0);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    padding: 30px;
-    position: relative;
-    overflow: hidden;
-    margin-left: 750px;
+  
+    display: flex;
+    justify-content: center;
+    height: 50vh;
+    padding: 30px; 
+  
 }
 
 .form-container {
@@ -134,6 +136,7 @@ text-decoration: underline overline;
 }
 
 h2 {
+  margin-top: 20px;
     text-align: center;
     margin-bottom: 20px;
     color: #0f0f0f;
