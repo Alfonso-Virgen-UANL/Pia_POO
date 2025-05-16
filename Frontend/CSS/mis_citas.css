@@ -1,0 +1,315 @@
+/* Estilos para la página de Mis Citas */
+
+/* Contenedor principal */
+.mis-citas {
+    padding: 2rem 0;
+    min-height: calc(100vh - 200px);
+}
+
+.citas-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.citas-container h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+    font-size: 2.2rem;
+}
+
+/* Filtros */
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filtro-grupo {
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filtro-grupo label {
+    margin-right: 10px;
+    font-weight: 600;
+}
+
+.filtro-grupo select,
+.filtro-grupo input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+#btn-limpiar-filtros {
+    padding: 8px 15px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+#btn-limpiar-filtros:hover {
+    background-color: #d32f2f;
+}
+
+/* Tabla de citas */
+.tabla-citas-container {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+}
+
+#tabla-citas {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#tabla-citas th,
+#tabla-citas td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#tabla-citas th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+#tabla-citas tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#tabla-citas tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estados de citas */
+.estado-pendiente {
+    background-color: #2196F3;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.estado-completada {
+    background-color: #4CAF50;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.estado-cancelada {
+    background-color: #f44336;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+/* Botones de acción */
+.btn-accion {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    margin-right: 5px;
+}
+
+.btn-ver {
+    background-color: #2196F3;
+    color: white;
+}
+
+.btn-ver:hover {
+    background-color: #0b7dda;
+}
+
+.btn-cancelar {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-cancelar:hover {
+    background-color: #d32f2f;
+}
+
+/* Modal de detalle */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal h3 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.detalle-cita {
+    padding: 15px;
+}
+
+.detalle-cita p {
+    margin: 10px 0;
+}
+
+.detalle-cita h4 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #4CAF50;
+}
+
+.detalle-cita ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.detalle-cita li {
+    padding: 5px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.detalle-cita .total {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    text-align: right;
+}
+
+.acciones-detalle {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-cancelar-detalle {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-cancelar-detalle:hover {
+    background-color: #d32f2f;
+}
+
+/* Mensaje sin citas */
+.mensaje-sin-citas {
+    text-align: center;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mensaje-sin-citas p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.mensaje-sin-citas a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.mensaje-sin-citas a:hover {
+    text-decoration: underline;
+}
+
+/* Mensajes de éxito/error */
+.mensaje {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.mensaje-success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border: 1px solid #d6e9c6;
+}
+
+.mensaje-error {
+    background-color: #f2dede;
+    color: #a94442;
+    border: 1px solid #ebccd1;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .filtros {
+        flex-direction: column;
+    }
+
+    .filtro-grupo {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    #tabla-citas th,
+    #tabla-citas td {
+        padding: 8px;
+    }
+
+    .btn-accion {
+        padding: 5px 8px;
+        font-size: 0.85rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 20% auto;
+    }
+}

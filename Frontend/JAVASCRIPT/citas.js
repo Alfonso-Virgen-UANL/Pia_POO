@@ -10,32 +10,153 @@ document.addEventListener('DOMContentLoaded', function() {
         welcomeMsg.textContent = `Bienvenido, ${localStorage.getItem('userName')}`;
     }
     
+    // Cargar datos de la base de datos (barberos y servicios)
+    cargarOpcionesDinamicas();
+    
     // Setear fecha mínima (hoy)
     document.getElementById('fecha').min = new Date().toISOString().split('T')[0];
     
-    // Actualizar el total inicialmente
-    actualizarTotal();
+    // Configurar el formulario
+    const form = document.getElementById('citaForm');
     
-    // Inicializar listeners para todos los selects existentes desde el inicio
-    const serviciosSelects = document.querySelectorAll('#servicios-container select');
-    serviciosSelects.forEach(select => {
-        select.addEventListener('change', actualizarTotal);
-    });
-    
-    // Agregar el event listener al formulario
-    document.getElementById('citaForm').addEventListener('submit', function(e) {
+    // Configurar el evento submit del formulario
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
         enviarFormulario();
     });
     
-    // Agregar event listener al botón de submit (respaldo)
+    // Configurar el botón submit como respaldo
     document.getElementById('submit-cita').addEventListener('click', function() {
-        enviarFormulario();
+        // Simular el envío del formulario
+        document.getElementById('citaForm').dispatchEvent(new Event('submit'));
     });
     
-    console.log('Listeners iniciales configurados a', serviciosSelects.length, 'selects');
+    // Inicializar listeners para todos los selects existentes
+    inicializarEventosServicios();
+    
+    // Actualizar el total inicial
+    actualizarTotal();
 });
 
+// Cargar barberos y servicios desde la base de datos
+async function cargarOpcionesDinamicas() {
+    try {
+        const response = await fetch('/barberia/Pia_POO/Backend/obtener_datos.php?tipo=todo');
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        if (!result.success) {
+            throw new Error(result.error || 'Error al obtener datos');
+        }
+        
+        // Cargar barberos
+        if (result.data.barberos && result.data.barberos.length > 0) {
+            const barberoSelect = document.getElementById('barbero');
+            // Mantener la opción predeterminada
+            let defaultOption = barberoSelect.querySelector('option[disabled]');
+            barberoSelect.innerHTML = '';
+            if (defaultOption) {
+                barberoSelect.appendChild(defaultOption);
+            }
+            
+            // Agregar opciones de barberos
+            result.data.barberos.forEach(barbero => {
+                const option = document.createElement('option');
+                option.value = barbero.barbero_id;
+                option.textContent = barbero.nombre;
+                barberoSelect.appendChild(option);
+            });
+        }
+        
+        // Cargar servicios
+        if (result.data.servicios && result.data.servicios.length > 0) {
+            // Organizar servicios por categorías
+            const serviciosPorCategoria = organizarServiciosPorCategoria(result.data.servicios);
+            
+            // Actualizar todos los selects de servicios existentes
+            const serviciosSelects = document.querySelectorAll('#servicios-container select');
+            serviciosSelects.forEach(select => {
+                actualizarOpcionesServicios(select, serviciosPorCategoria);
+            });
+            
+            // Guardar servicios en una variable global para usarlos luego
+            window.serviciosDisponibles = serviciosPorCategoria;
+        }
+    } catch (error) {
+        console.error('Error al cargar opciones:', error);
+        alert('No se pudieron cargar los barberos y servicios. Por favor, recarga la página.');
+    }
+}
+
+// Organizar servicios por categoría
+function organizarServiciosPorCategoria(servicios) {
+    const categorias = {
+        'Cortes': [],
+        'Barba': [],
+        'Facial': [],
+        'Otros': []
+    };
+    
+    servicios.forEach(servicio => {
+        // Clasificar servicios por su nombre (podría mejorarse con una columna de categoría en la BD)
+        if (servicio.nombre.toLowerCase().includes('corte')) {
+            categorias['Cortes'].push(servicio);
+        } else if (servicio.nombre.toLowerCase().includes('barba') || 
+                servicio.nombre.toLowerCase().includes('afeitado') ||
+                servicio.nombre.toLowerCase().includes('bigote')) {
+            categorias['Barba'].push(servicio);
+        } else if (servicio.nombre.toLowerCase().includes('facial') ||
+                servicio.nombre.toLowerCase().includes('limpieza') ||
+                servicio.nombre.toLowerCase().includes('spa')) {
+            categorias['Facial'].push(servicio);
+        } else {
+            categorias['Otros'].push(servicio);
+        }
+    });
+    
+    return categorias;
+}
+
+// Actualizar las opciones de un select de servicios
+function actualizarOpcionesServicios(select, serviciosPorCategoria) {
+    // Mantener la opción predeterminada
+    let defaultOption = select.querySelector('option[disabled]');
+    select.innerHTML = '';
+    if (defaultOption) {
+        select.appendChild(defaultOption);
+    }
+    
+    // Agregar servicios por categoría
+    for (const categoria in serviciosPorCategoria) {
+        if (serviciosPorCategoria[categoria].length > 0) {
+            const group = document.createElement('optgroup');
+            group.label = categoria;
+            
+            serviciosPorCategoria[categoria].forEach(servicio => {
+                const option = document.createElement('option');
+                option.value = servicio.servicio_id;
+                option.textContent = `${servicio.nombre} - $${servicio.precio}`;
+                option.dataset.precio = servicio.precio;
+                option.dataset.nombre = servicio.nombre;
+                group.appendChild(option);
+            });
+            
+            select.appendChild(group);
+        }
+    }
+}
+
+// Inicializar los eventos para los selects de servicios
+function inicializarEventosServicios() {
+    const serviciosSelects = document.querySelectorAll('#servicios-container select');
+    serviciosSelects.forEach(select => {
+        select.addEventListener('change', actualizarTotal);
+    });
+}
+
+// Agregar servicio
 document.getElementById('add-servicio').addEventListener('click', function() {
     const serviciosContainer = document.getElementById('servicios-container');
     const selects = serviciosContainer.querySelectorAll('.servicio-grupo');
@@ -53,25 +174,19 @@ document.getElementById('add-servicio').addEventListener('click', function() {
     const nuevoSelect = document.createElement('select');
     nuevoSelect.name = 'servicios[]';
     nuevoSelect.required = true;
-    nuevoSelect.innerHTML = `
-        <option value="" selected disabled>Selecciona una opción</option>
-        <optgroup label="Corte de Cabello">
-            <option value="185">Corte de Caballero - $185</option>
-            <option value="165">Corte infantil - $165</option>
-            <option value="100">Delineado de Cabello - $100</option>
-        </optgroup>
-        <optgroup label="Facial">
-            <option value="185">Limpieza facial - $185</option>
-            <option value="165">Spa - $165</option>
-        </optgroup>
-        <optgroup label="Barba">
-            <option value="120">Recorte de Barba - $120</option>
-            <option value="85">Afeitado Clásico - $85</option>
-            <option value="115">Recorte de bigote - $115</option>
-            <option value="120">Tratamiento barba - $120</option>
-            <option value="140">Limpieza barba y bigote - $140</option>
-        </optgroup>
-    `;
+    
+    // Opción por defecto
+    const defaultOption = document.createElement('option');
+    defaultOption.value = "";
+    defaultOption.textContent = "Selecciona una opción";
+    defaultOption.disabled = true;
+    defaultOption.selected = true;
+    nuevoSelect.appendChild(defaultOption);
+    
+    // Si tenemos servicios disponibles, los agregamos
+    if (window.serviciosDisponibles) {
+        actualizarOpcionesServicios(nuevoSelect, window.serviciosDisponibles);
+    }
     
     // Crear botón de eliminar
     const btnEliminar = document.createElement('button');
@@ -94,25 +209,22 @@ document.getElementById('add-servicio').addEventListener('click', function() {
     nuevoSelect.addEventListener('change', actualizarTotal);
     
     // Forzar actualización del total después de agregar un nuevo selector
-    console.log('Nuevo select añadido, actualizando total');
     actualizarTotal();
 });
 
-// Modificar el primer servicio para añadirle un botón de eliminar
+// Modificar el primer servicio para añadirle estructura adecuada
 document.addEventListener('DOMContentLoaded', function() {
-    const primerServicio = document.querySelector('#servicios-container select');
-    if (primerServicio) {
-        // Verificar que no esté ya dentro de un grupo
-        if (!primerServicio.parentElement.classList.contains('servicio-grupo')) {
-            const grupoServicio = document.createElement('div');
-            grupoServicio.className = 'servicio-grupo';
-            
-            // Obtener el select existente y envolverlo
-            primerServicio.parentNode.insertBefore(grupoServicio, primerServicio);
-            grupoServicio.appendChild(primerServicio);
-            
-            // No agregar botón de eliminar al primer servicio para asegurar que siempre haya al menos uno
-        }
+    const serviciosContainer = document.getElementById('servicios-container');
+    const primerSelect = serviciosContainer.querySelector('select');
+    
+    if (primerSelect && !primerSelect.parentElement.classList.contains('servicio-grupo')) {
+        // Crear grupo de servicio
+        const grupoServicio = document.createElement('div');
+        grupoServicio.className = 'servicio-grupo';
+        
+        // Obtener el select existente y envolverlo
+        primerSelect.parentNode.insertBefore(grupoServicio, primerSelect);
+        grupoServicio.appendChild(primerSelect);
     }
 });
 
@@ -122,31 +234,61 @@ function actualizarTotal() {
     let total = 0;
 
     selects.forEach(select => {
-        const valor = select.value;
-        console.log('Valor del select:', valor);
-        const precio = parseInt(valor) || 0;
-        total += precio;
+        if (select.value) {
+            // Intentar obtener el precio del dataset si está disponible
+            const selectedOption = select.options[select.selectedIndex];
+            if (selectedOption && selectedOption.dataset.precio) {
+                total += parseFloat(selectedOption.dataset.precio);
+            } else {
+                // Fallback: usar el valor del select si no hay dataset
+                const precio = parseFloat(select.value) || 0;
+                total += precio;
+            }
+        }
     });
 
     console.log('Nuevo total calculado:', total);
-    document.getElementById('total').textContent = `Total: $${total}`;
+    document.getElementById('total').textContent = `Total: $${total.toFixed(2)}`;
+    
+    // Guardar el total para enviarlo después
+    document.getElementById('citaForm').dataset.total = total.toFixed(2);
 }
 
-function enviarFormulario() {
+async function enviarFormulario() {
     console.log('Función enviarFormulario ejecutada');
     const form = document.getElementById('citaForm');
     const fecha = form.fecha.value;
     const hora = form.hora.value;
     const barbero = form.barbero.value;
-    const servicios = Array.from(document.querySelectorAll('[name="servicios[]"]'))
-                        .map(select => select.value)
-                        .filter(Boolean);
+    const serviciosSelects = document.querySelectorAll('[name="servicios[]"]');
+    const total = form.dataset.total || '0';
+
+    // Recolectar servicios con sus IDs y nombres
+    const servicios = [];
+    const serviciosInfo = [];
+    serviciosSelects.forEach(select => {
+        if (select.value) {
+            servicios.push(select.value);
+            
+            // Guardar información adicional si está disponible
+            const selectedOption = select.options[select.selectedIndex];
+            if (selectedOption) {
+                serviciosInfo.push({
+                    id: select.value,
+                    nombre: selectedOption.dataset.nombre || selectedOption.textContent,
+                    precio: selectedOption.dataset.precio || '0'
+                });
+            }
+        }
+    });
 
     console.log({
         fecha, 
         hora, 
         barbero, 
-        servicios
+        servicios,
+        serviciosInfo,
+        total
     });
 
     if (!fecha || !hora || !barbero || servicios.length === 0) {
@@ -158,14 +300,13 @@ function enviarFormulario() {
     formData.append('fecha', fecha);
     formData.append('hora', hora);
     formData.append('barbero', barbero);
+    formData.append('total', total);
+    
+    // Enviar los IDs de servicios
     servicios.forEach(servicio => {
         formData.append('servicios[]', servicio);
     });
 
-    enviarDatosAlServidor(formData);
-}
-
-async function enviarDatosAlServidor(formData) {
     try {
         const submitBtn = document.getElementById('submit-cita');
         submitBtn.disabled = true;

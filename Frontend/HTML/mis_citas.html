@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Citas - Barbería Hefesto</title>
+    <link rel="stylesheet" href="../CSS/citas.css">
+</head>
+<body>
+    <header>
+        <div class="menu container">
+            <a href="Inicio.html" class="logo">
+                <img src="imagenes/logo.svg" alt="Logo" class="logo-img">
+            </a>
+            <nav class="navbar" aria-label="Menú de navegación principal">
+                <ul>
+                    <li><a href="Inicio.html">Inicio</a></li>
+                    <li><a href="Servicios.html">Servicios</a></li>
+                    <li><a href="citas.html">Agendar Cita</a></li>
+                    <li><a href="mis_citas.html" class="active">Mis Citas</a></li>
+                    <li><a href="perfil_usario.html">Perfil</a></li>
+                </ul>
+            </nav>
+            <div id="user-section">
+                <a href="sesion-cliente.html" class="Usuario" id="login-link">
+                    <img src="imagenes/usuraio.svg" alt="Iniciar sesión" class="usuario-icono">
+                </a>
+                <span id="welcome-message" style="display:none"></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="mis-citas">
+        <div class="citas-container">
+            <h2>Mis Citas Programadas</h2>
+            <div class="filtros">
+                <div class="filtro-grupo">
+                    <label for="filtro-estado">Filtrar por estado:</label>
+                    <select id="filtro-estado">
+                        <option value="todos">Todos</option>
+                        <option value="pendiente">Pendientes</option>
+                        <option value="completada">Completadas</option>
+                        <option value="cancelada">Canceladas</option>
+                    </select>
+                </div>
+                <div class="filtro-grupo">
+                    <label for="filtro-fecha">Filtrar por fecha:</label>
+                    <input type="date" id="filtro-fecha">
+                    <button id="btn-limpiar-filtros">Limpiar filtros</button>
+                </div>
+            </div>
+
+            <div class="tabla-citas-container">
+                <table id="tabla-citas">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Barbero</th>
+                            <th>Servicios</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="citas-body">
+                        
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="sin-citas" class="mensaje-sin-citas" style="display: none;">
+                <p>No tienes citas programadas. <a href="citas.html">¡Agenda ahora!</a></p>
+            </div>
+
+            <div id="cita-detalle" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="modal-close">&times;</span>
+                    <h3>Detalles de la Cita</h3>
+                    <div id="detalle-contenido"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content container">
+            <h3>Contactos</h3>
+            <address>
+                <ul>
+                    <li><img src="imagenes/tel1.svg" alt="Teléfono" class="contact-icon"> 81 1234 5678</li>
+                    <li><img src="imagenes/wp2.svg" alt="WhatsApp" class="contact-icon"> 81 8765 4321</li>
+                </ul>
+            </address>
+        </div>
+    </footer>
+
+    <script src="../JAVASCRIPT/mis_citas.js"></script>
+</body>
+</html>

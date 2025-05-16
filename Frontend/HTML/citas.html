@@ -16,7 +16,8 @@
                 <ul>
                     <li><a href="Inicio.html">Inicio</a></li>
                     <li><a href="Servicios.html">Servicios</a></li>
-                    <li><a href="citas.html" class="active">Agendar Cita</a></li>
+                    <li><a href="citas.html">Agendar Cita</a></li>
+                    <li><a href="mis_citas.html" class="active">Mis Citas</a></li>
                     <li><a href="perfil_usario.html">Perfil</a></li>
                 </ul>
             </nav>
@@ -44,14 +45,7 @@
                     <div class="servicio-grupo">
                         <select name="servicios[]" required>
                             <option value="" disabled selected>Selecciona un servicio</option>
-                            <optgroup label="Cortes">
-                                <option value="185">Corte Caballero - $185</option>
-                                <option value="165">Corte Infantil - $165</option>
-                            </optgroup>
-                            <optgroup label="Barba">
-                                <option value="125">Recorte Barba - $125</option>
-                                <option value="85">Afeitado Clásico - $85</option>
-                            </optgroup>
+                            <!-- Aquí se cargarán los servicios dinámicamente -->
                         </select>
                     </div>
                 </div>
@@ -60,12 +54,11 @@
                 <label for="barbero">Barbero:</label>
                 <select id="barbero" name="barbero" required>
                     <option value="" disabled selected>Selecciona tu barbero</option>
-                    <option value="1">Juan Pérez</option>
-                    <option value="2">Carlos López</option>
+                    <!-- Aquí se cargarán los barberos dinámicamente -->
                 </select>
 
                 <p id="total">Total: $0</p>
-                <button type="button" id="submit-cita">Confirmar Cita</button>
+                <button type="submit" id="submit-cita">Confirmar Cita</button>
             </form>
         </div>
     </main>
