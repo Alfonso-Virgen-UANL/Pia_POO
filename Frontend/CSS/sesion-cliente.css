@@ -302,8 +302,3 @@ button:hover {
     text-decoration: none; /* Asegura que no haya subrayado */
   }
 
-  @media (max-width: 968px) {
-    .container1 {
-      margin-left: 280px;
-    }
-  }
