@@ -51,6 +51,14 @@ try {
         throw new Exception('Todos los campos son requeridos');
     }
     
+    // Validar que la hora esté dentro del horario permitido (9:00 AM - 6:00 PM)
+    list($hours, $minutes) = explode(':', $hora);
+    $hora_decimal = intval($hours) + intval($minutes) / 60;
+    
+    if ($hora_decimal < 9 || $hora_decimal > 18) {
+        throw new Exception('El horario debe estar entre las 9:00 AM y las 6:00 PM');
+    }
+    
     // Si no se proporcionó total, lo calculamos
     if ($total <= 0) {
         // Obtener precios de servicios de la BD
@@ -79,6 +87,14 @@ try {
     
     // Calcular hora de finalización (30 minutos por cita)
     $hora_fin = date('H:i:s', strtotime($hora) + 30*60);
+    
+    // Validar que la hora de finalización no exceda las 6 PM
+    list($fin_hours, $fin_minutes) = explode(':', $hora_fin);
+    $fin_hora_decimal = intval($fin_hours) + intval($fin_minutes) / 60;
+    
+    if ($fin_hora_decimal > 18) {
+        throw new Exception('La cita finalizaría después de las 6:00 PM. Por favor, selecciona un horario anterior.');
+    }
     
     // Asegurarnos de que la tabla cita_servicios existe
     try {

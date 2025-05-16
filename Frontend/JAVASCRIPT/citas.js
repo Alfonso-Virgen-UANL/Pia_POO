@@ -16,6 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Setear fecha mínima (hoy)
     document.getElementById('fecha').min = new Date().toISOString().split('T')[0];
     
+    // Configurar restricciones de horario
+    const horaInput = document.getElementById('hora');
+    horaInput.addEventListener('change', function() {
+        validarHorario(this);
+    });
+    
     // Configurar el formulario
     const form = document.getElementById('citaForm');
     
@@ -37,6 +43,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // Actualizar el total inicial
     actualizarTotal();
 });
+
+// Función para validar el horario
+function validarHorario(input) {
+    const hora = input.value;
+    
+    if (!hora) return;
+    
+    const [hours, minutes] = hora.split(':').map(Number);
+    const horaDecimal = hours + minutes / 60;
+    
+    if (horaDecimal < 9) {
+        alert('No se pueden agendar citas antes de las 9:00 AM');
+        input.value = '09:00';
+    } else if (horaDecimal > 18) {
+        alert('No se pueden agendar citas después de las 6:00 PM');
+        input.value = '18:00';
+    }
+}
 
 // Cargar barberos y servicios desde la base de datos
 async function cargarOpcionesDinamicas() {
@@ -262,6 +286,15 @@ async function enviarFormulario() {
     const barbero = form.barbero.value;
     const serviciosSelects = document.querySelectorAll('[name="servicios[]"]');
     const total = form.dataset.total || '0';
+
+    // Validar horario antes de enviar
+    const [hours, minutes] = hora.split(':').map(Number);
+    const horaDecimal = hours + minutes / 60;
+    
+    if (horaDecimal < 9 || horaDecimal > 18) {
+        alert('Por favor selecciona un horario entre las 9:00 AM y las 6:00 PM');
+        return;
+    }
 
     // Recolectar servicios con sus IDs y nombres
     const servicios = [];

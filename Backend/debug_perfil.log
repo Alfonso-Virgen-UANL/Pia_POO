@@ -1,0 +1,27 @@
+[2025-05-16 17:57:41] Datos recibidos en actualizar_perfil.php: Array
+(
+    [nombre] => prueba
+    [email] => prueba@gmail.com
+    [telefono] => 8180398143
+    [password] => nuevaprueba
+    [current_password] => prueba12345
+)
+
+[2025-05-16 17:57:43] Datos recibidos en actualizar_perfil.php: Array
+(
+    [nombre] => prueba
+    [email] => prueba@gmail.com
+    [telefono] => 8180398143
+    [password] => nuevaprueba
+    [current_password] => prueba12345
+)
+
+[2025-05-16 17:57:44] Datos recibidos en actualizar_perfil.php: Array
+(
+    [nombre] => prueba
+    [email] => prueba@gmail.com
+    [telefono] => 8180398143
+    [password] => nuevaprueba
+    [current_password] => prueba12345
+)
+
