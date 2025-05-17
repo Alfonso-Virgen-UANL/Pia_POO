@@ -1,4 +1,4 @@
-// Alternar contraseña visible/oculta (sin cambios, funciona bien)
+// Alternar contraseña visible/oculta
 function togglePassword(inputId) {
     const input = document.getElementById(inputId);
     const toggle = input.nextElementSibling;
@@ -12,21 +12,24 @@ function togglePassword(inputId) {
     }
 }
 
+// Cambiar entre formularios (simplificado sin reset)
 function showLogin() {
     document.getElementById('login-form').classList.remove('hidden');
     document.getElementById('register-form').classList.add('hidden');
-    document.getElementById('loginForm').reset();
+    // Eliminamos el reset que causa problemas
 }
 
 function showRegister() {
     document.getElementById('register-form').classList.remove('hidden');
     document.getElementById('login-form').classList.add('hidden');
-    document.getElementById('registerForm').reset();
+    // Eliminamos el reset que causa problemas
 }
 
-// Inicialización (simplificada)
+// Inicialización
 document.addEventListener('DOMContentLoaded', function() {
-    showLogin(); // Mostrar login por defecto
+    // Mostrar login por defecto
+    document.getElementById('login-form').classList.remove('hidden');
+    document.getElementById('register-form').classList.add('hidden');
     
     // Verificar si el usuario ya inició sesión
     if (localStorage.getItem('userLoggedIn')) {
@@ -47,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Manejo de login (corregido para usar FormData)
+// Manejo de login
 document.getElementById('loginForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
@@ -95,7 +98,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     }
 });
 
-// Manejo de registro (corregido para usar FormData)
+// Manejo de registro
 document.getElementById('registerForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
@@ -152,7 +155,15 @@ document.getElementById('registerForm').addEventListener('submit', async functio
         if (data && data.success) {
             // Mostrar alerta de éxito con window.alert
             window.alert('¡Registro exitoso! Ahora puedes iniciar sesión con tus credenciales.');
-            // Cambiar al formulario de login
+            
+            // Limpiar manualmente los campos del formulario de registro
+            document.getElementById('register-name').value = '';
+            document.getElementById('register-phone').value = '';
+            document.getElementById('register-email').value = '';
+            document.getElementById('register-password').value = '';
+            document.getElementById('register-confirm-password').value = '';
+            
+            // Cambiar al formulario de login sin intentar hacer reset
             showLogin();
         } else {
             window.alert(data?.error || 'Error en el registro');
