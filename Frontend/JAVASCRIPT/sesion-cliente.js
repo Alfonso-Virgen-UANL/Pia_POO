@@ -12,17 +12,16 @@ function togglePassword(inputId) {
     }
 }
 
-// Cambiar entre formularios (mejorado)
 function showLogin() {
     document.getElementById('login-form').classList.remove('hidden');
     document.getElementById('register-form').classList.add('hidden');
-    document.getElementById('login-form').reset();
+    document.getElementById('loginForm').reset();
 }
 
 function showRegister() {
     document.getElementById('register-form').classList.remove('hidden');
     document.getElementById('login-form').classList.add('hidden');
-    document.getElementById('register-form').reset();
+    document.getElementById('registerForm').reset();
 }
 
 // Inicialización (simplificada)
